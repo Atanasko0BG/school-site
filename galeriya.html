@@ -68,8 +68,13 @@
         <p>гр. Кричим</p>
       </div>
     </div>
+    <div class="burger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <nav>
-      <ul>
+      <ul id="nav-links">
         <li><a href="index.html">Начало</a></li>
         <li><a href="priem.html">Прием</a></li>
         <li><a href="dokumenti.html">Документи</a></li>
@@ -116,6 +121,11 @@
       lightbox.style.display = 'none';
       lightboxImg.src = '';
     });
+
+    function toggleMenu() {
+      const nav = document.getElementById('nav-links');
+      nav.classList.toggle('active');
+    }
   </script>
 </body>
 </html>
