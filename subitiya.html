@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Събития – СУ "Петко Р. Славейков"</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+  <style>
+    #calendar {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Лого на училището">
+      <div>
+        <h1>СУ "Петко Р. Славейков"</h1>
+        <p>гр. Кричим</p>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Начало</a></li>
+        <li><a href="priem.html">Прием</a></li>
+        <li><a href="dokumenti.html">Документи</a></li>
+        <li><a href="novini.html">Новини</a></li>
+        <li><a href="ekip.html">Екип</a></li>
+        <li><a href="subitiya.html">Събития</a></li>
+        <li><a href="galeriya.html">Галерия</a></li>
+        <li><a href="kontakt.html">Контакти</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Календар на събитията</h2>
+    <p>Вижте предстоящите събития и активности в училището</p>
+  </section>
+
+  <div id='calendar'></div>
+
+  <footer>
+    <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'bg',
+        events: [
+          {
+            title: 'Първи учебен ден',
+            start: '2025-09-15'
+          },
+          {
+            title: 'Коледен концерт',
+            start: '2025-12-20'
+          },
+          {
+            title: 'Пролетна ваканция',
+            start: '2026-04-01',
+            end: '2026-04-07'
+          },
+          {
+            title: 'Родителска среща',
+            start: '2025-11-10'
+          }
+        ]
+      });
+      calendar.render();
+    });
+  </script>
+</body>
+</html>

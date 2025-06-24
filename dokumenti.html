@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Документи – СУ "Петко Р. Славейков"</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    .docs-section {
+      padding: 50px 20px;
+      background: var(--background-color);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .docs-section h2 {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 30px;
+    }
+
+    .document-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .document-list li {
+      background: var(--card-bg);
+      margin-bottom: 15px;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .document-list a {
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .document-list a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Лого на училището">
+      <div>
+        <h1>СУ "Петко Р. Славейков"</h1>
+        <p>гр. Кричим</p>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Начало</a></li>
+        <li><a href="priem.html">Прием</a></li>
+        <li><a href="dokumenti.html">Документи</a></li>
+        <li><a href="novini.html">Новини</a></li>
+        <li><a href="ekip.html">Екип</a></li>
+        <li><a href="subitiya.html">Събития</a></li>
+        <li><a href="galeriya.html">Галерия</a></li>
+        <li><a href="kontakt.html">Контакти</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="docs-section">
+    <h2>Официални документи</h2>
+    <ul class="document-list">
+      <li>
+        <span>График на учебната година 2024/2025</span>
+        <a href="docs/grafik-2024-2025.pdf" download>⬇ Изтегли</a>
+      </li>
+      <li>
+        <span>Вътрешни правила за безопасност</span>
+        <a href="docs/pravila-bezopasnost.pdf" download>⬇ Изтегли</a>
+      </li>
+      <li>
+        <span>Заявление за ученическа стипендия</span>
+        <a href="docs/zayavlenie-stipendiya.pdf" download>⬇ Изтегли</a>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
+  </footer>
+</body>
+</html>
