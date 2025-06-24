@@ -229,3 +229,15 @@ footer {
     display: flex;
   }
 }
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  transition: top 0.3s ease;
+}
+body {
+  padding-top: 100px; /* за да не се скрива съдържанието зад менюто */
+}
