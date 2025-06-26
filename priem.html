@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Прием – СУ "Петко Р. Славейков"</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+
   <header>
     <div class="logo">
       <img src="logo.png" alt="Лого на училището">
@@ -16,14 +17,14 @@
         <h1>СУ "Петко Р. Славейков"</h1>
         <p>гр. Кричим</p>
       </div>
-    </div>
-    <div class="burger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+      <div class="burger" onclick="document.querySelector('nav ul').classList.toggle('active')">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
     <nav>
-      <ul id="nav-links">
+      <ul>
         <li><a href="index.html">Начало</a></li>
         <li><a href="priem.html">Прием</a></li>
         <li><a href="dokumenti.html">Документи</a></li>
@@ -36,22 +37,29 @@
     </nav>
   </header>
 
+  <!-- HERO SECTION -->
   <section class="hero">
-    <h2>Прием на ученици</h2>
-    <p>Всичко, което трябва да знаете за кандидатстване в 1. и 8. клас</p>
-  </section>
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <h2>Добре дошли в СУ "Петко Р. Славейков"</h2>
+      <p>Съвременно училище за знание, развитие и вдъхновение в гр. Кричим.</p>
+    </div>
+  </div>
+</section>
 
+
+  <!-- CONTENT SECTION -->
   <section>
     <div class="card">
       <h2>Документи и срокове</h2>
       <p>За записване в 1. и 8. клас се изискват следните документи:</p>
-      <ul>
-        <li>Заявление за прием</li>
-        <li>Свидетелство за завършен клас</li>
-        <li>Акт за раждане (копие)</li>
-        <li>Медицински картон</li>
+      <ul style="text-align: left; padding-left: 20px; margin-top: 10px;">
+        <li>✅ Заявление за прием</li>
+        <li>✅ Свидетелство за завършен клас</li>
+        <li>✅ Копие от акт за раждане</li>
+        <li>✅ Медицински картон</li>
       </ul>
-      <p>Срокове за кандидатстване ще бъдат обявени допълнително тук и в раздел "Новини".</p>
+      <p style="margin-top: 20px;">Срокове за кандидатстване ще бъдат обявени допълнително тук и в раздел "Новини".</p>
     </div>
   </section>
 
@@ -64,11 +72,5 @@
     <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
   </footer>
 
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById('nav-links');
-      nav.classList.toggle('active');
-    }
-  </script>
 </body>
 </html>

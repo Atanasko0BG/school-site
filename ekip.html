@@ -56,31 +56,35 @@
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="logo.png" alt="Лого на училището">
-      <div>
-        <h1>СУ "Петко Р. Славейков"</h1>
-        <p>гр. Кричим</p>
-      </div>
+  <div class="logo">
+    <img src="logo.png" alt="Лого на училището">
+    <div>
+      <h1>СУ "Петко Р. Славейков"</h1>
+      <p>гр. Кричим</p>
     </div>
     <div class="burger" onclick="toggleMenu()">
       <span></span>
       <span></span>
       <span></span>
     </div>
-    <nav>
-      <ul id="nav-links">
-        <li><a href="index.html">Начало</a></li>
-        <li><a href="priem.html">Прием</a></li>
-        <li><a href="dokumenti.html">Документи</a></li>
-        <li><a href="novini.html">Новини</a></li>
-        <li><a href="ekip.html">Екип</a></li>
-        <li><a href="subitiya.html">Събития</a></li>
-        <li><a href="galeriya.html">Галерия</a></li>
-        <li><a href="kontakt.html">Контакти</a></li>
-      </ul>
-    </nav>
-  </header>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Начало</a></li>
+      <li><a href="priem.html">Прием</a></li>
+      <li><a href="dokumenti.html">Документи</a></li>
+      <li><a href="novini.html">Новини</a></li>
+      <li><a href="ekip.html">Екип</a></li>
+      <li><a href="subitiya.html">Събития</a></li>
+      <li><a href="galeriya.html">Галерия</a></li>
+      <li><a href="kontakt.html">Контакти</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+    <h2>Екип</h2>
+  </section>
 
   <section class="team-section">
     <h2>Администрация</h2>
@@ -140,5 +144,11 @@
       nav.classList.toggle('active');
     }
   </script>
+  <script>
+  function toggleMenu() {
+    document.querySelector('nav ul').classList.toggle('active');
+  }
+</script>
+
 </body>
 </html>

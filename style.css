@@ -1,24 +1,12 @@
+
 /* Модерен, технологичен стил за училищен сайт */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-.hero h2 {
-  color: white;
-  font-size: 2.5em;
-  font-weight: 700;
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
-}
-
-.hero p {
-  color: #f0f0f0;
-  font-size: 1.2em;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
-}
-
 :root {
-  --primary-color: #1a2b6c;
+  --primary-color: #2d4ea1;
   --accent-color: #00bcd4;
-  --background-color: #f4f7fa;
+  --background-color: #f4f6fc;
   --card-bg: #ffffff;
   --text-color: #2c3e50;
   --font-main: 'Poppins', sans-serif;
@@ -35,16 +23,20 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
+  padding-top: 100px; /* за да не се скрива съдържанието зад менюто */
 }
 
 header {
-  background-color: var(--primary-color);
+  background: rgba(26, 43, 108, 0.85);
+  backdrop-filter: blur(3px);
   color: white;
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 1000;
+  width: 100%;
+  z-index: 999;
+  transition: top 0.3s ease;
 }
 
 .logo {
@@ -93,20 +85,23 @@ nav a:hover::after {
 }
 
 .hero {
-  padding: 80px 20px;
+  padding: 100px 20px;
   text-align: center;
-  background: linear-gradient(135deg, #1a2b6c, #2c3e90);
+  background: linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.63)), url("images/hero-1.jpg") center/cover no-repeat;
   color: white;
 }
 
 .hero h2 {
   font-size: 2.8em;
   margin-bottom: 15px;
+  color: white;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
 }
 
 .hero p {
   font-size: 1.2em;
-  opacity: 0.95;
+  color: #f0f0f0;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
 }
 
 section {
@@ -177,29 +172,13 @@ footer {
   border-top: 1px solid #ccc;
 }
 
-@media (max-width: 768px) {
-  .hero h2 {
-    font-size: 2em;
-  }
-  nav ul {
-    gap: 12px;
-  }
-  .btn {
-    width: 100%;
-    max-width: 280px;
-  }
-}
-
-:root {
-  --primary-color: #2d4ea1;
-  --background-color: #f4f6fc;
-}
-
+/* Мобилна навигация */
 .burger {
   display: none;
   flex-direction: column;
   cursor: pointer;
   gap: 5px;
+  margin-left: auto;
 }
 
 .burger span {
@@ -210,15 +189,22 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .hero h2 {
+    font-size: 2em;
+  }
+
   nav ul {
     display: none;
     flex-direction: column;
     background: var(--primary-color);
     position: absolute;
-    top: 60px;
+    top: 80px;
     right: 20px;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    width: 200px;
+    z-index: 999;
   }
 
   nav ul.active {
@@ -228,16 +214,161 @@ footer {
   .burger {
     display: flex;
   }
+
+  .logo {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+
+  .logo h1 {
+    font-size: 1em;
+  }
+
+  .logo p {
+    font-size: 0.8em;
+  }
+
+  header {
+    padding: 10px 20px;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+  }
 }
 
-header {
+
+.calendar-section {
+  padding: 60px 20px;
+  background-color: var(--background-color);
+  text-align: center;
+}
+
+.calendar-section h2 {
+  font-size: 2.2em;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.calendar-section p {
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 1.1em;
+}
+
+#calendar {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .calendar-section {
+    padding: 40px 10px;
+  }
+
+  .calendar-section h2 {
+    font-size: 1.6em;
+  }
+
+  .calendar-section p {
+    font-size: 1em;
+    margin-bottom: 20px;
+  }
+
+  #calendar {
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: none;
+    font-size: 0.9em;
+  }
+
+  .fc .fc-toolbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .fc .fc-toolbar-title {
+    font-size: 1.2em;
+  }
+
+  .fc-button {
+    font-size: 0.9em !important;
+    padding: 5px 10px !important;
+  }
+}
+
+
+/* Странично меню */
+.side-menu {
   position: fixed;
-  width: 100%;
   top: 0;
-  left: 0;
-  z-index: 999;
-  transition: top 0.3s ease;
+  left: -300px;
+  width: 260px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  transition: left 0.3s ease;
+  padding: 20px;
 }
-body {
-  padding-top: 100px; /* за да не се скрива съдържанието зад менюто */
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
 }
+
+.side-menu ul li {
+  margin-bottom: 20px;
+}
+
+.side-menu ul li a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--primary-color);
+  font-size: 1.1em;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  font-size: 1.8em;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+/* Бутон ☰ */
+.mobile-menu-button {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 1.8em;
+  color: white;
+  background: var(--primary-color);
+  border-radius: 6px;
+  padding: 6px 12px;
+  z-index: 10000;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: block;
+  }
+}
+
