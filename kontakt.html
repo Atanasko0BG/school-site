@@ -37,19 +37,24 @@
 <body>
   <header>
   <div class="logo">
-    <img src="logo.png" alt="Лого на училището">
+    <img src="logo.png" alt="Лого на училището" loading="lazy" decoding="async">
     <div>
       <h1>СУ "Петко Р. Славейков"</h1>
       <p>гр. Кричим</p>
     </div>
-    <div class="burger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+
+    <!-- Бургер бутон с ARIA -->
+    <button class="burger"
+            aria-label="Отвори основното меню"
+            aria-controls="nav-links"
+            aria-expanded="false"
+            onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+
   <nav>
-    <ul>
+    <ul id="nav-links">
       <li><a href="index.html">Начало</a></li>
       <li><a href="priem.html">Прием</a></li>
       <li><a href="dokumenti.html">Документи</a></li>
@@ -61,6 +66,7 @@
     </ul>
   </nav>
 </header>
+
 
 <section class="hero">
     <h2>Контакти</h2>
