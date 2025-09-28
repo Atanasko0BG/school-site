@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Новина – СУ "Петко Р. Славейков"</title>
+
+  <meta name="description" content="Единична новина от СУ 'П. Р. Славейков', гр. Кричим.">
+  <meta property="og:title" content='Новина – СУ "П. Р. Славейков"'>
+  <meta property="og:description" content="Новини от училището.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="images/hero-1.jpg">
+  <meta name="theme-color" content="#2d4ea1">
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+<header>
+  <div class="logo">
+    <img src="logo.png" alt="Лого на училището" loading="lazy" decoding="async">
+    <div>
+      <h1>СУ "Петко Р. Славейков"</h1>
+      <p>гр. Кричим</p>
+    </div>
+    <button class="burger" aria-label="Отвори основното меню" aria-controls="nav-links" aria-expanded="false" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav>
+    <ul id="nav-links">
+      <li><a href="index.html">Начало</a></li>
+      <li><a href="priem.html">Прием</a></li>
+      <li><a href="dokumenti.html">Документи</a></li>
+      <li><a href="novini.html">Новини</a></li>
+      <li><a href="ekip.html">Екип</a></li>
+      <li><a href="subitiya.html">Събития</a></li>
+      <li><a href="galeriya.html">Галерия</a></li>
+      <li><a href="kontakt.html">Контакти</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section>
+  <div class="card news-single">
+    <a class="btn" href="novini.html" style="margin-bottom:16px; display:inline-block;">← Обратно към новините</a>
+
+    <!-- Якорът в URL (#otkrivane-2025) ти позволява да скролнеш до конкретната секция -->
+    <article id="otkrivane-2025">
+      <h2>Откриване на учебната 2025/26</h2>
+      <p class="news-meta">Категория: <strong>Събитие</strong> · Дата: <time datetime="2025-09-15">15 септември 2025</time></p>
+      <img src="images/news/15 september.png" alt="Откриване на учебната година" loading="lazy" style="width:100%;border-radius:12px;margin:12px 0;">
+      <p>Тържествено откриване на двора на училището с програма и гости. Благодарим на всички ученици, родители и учители!</p>
+      <p>Начален час: 9:00. Моля, елате 10 минути по-рано.</p>
+    </article>
+
+    <hr style="margin:28px 0;">
+
+    <article id="matematika-otbor">
+      <h2>Отличие за отбора по математика</h2>
+      <p class="news-meta">Категория: <strong>Успех</strong> · Дата: <time datetime="2025-10-01">1 октомври 2025</time></p>
+      <img src="images/news/math.jpg" alt="Отбор по математика" loading="lazy" style="width:100%;border-radius:12px;margin:12px 0;">
+      <p>Нашите ученици спечелиха второ място в областното състезание по математика. Поздравления за труда и упоритостта!</p>
+    </article>
+
+    <hr style="margin:28px 0;">
+
+    <article id="grafik-sreshti">
+      <h2>График на родителските срещи</h2>
+      <p class="news-meta">Категория: <strong>Съобщение</strong> · Дата: <time datetime="2025-09-28">28 септември 2025</time></p>
+      <img src="images/news/parents.jpg" alt="Родителски срещи" loading="lazy" style="width:100%;border-radius:12px;margin:12px 0;">
+      <p>Публикуван е графикът по класове. Моля, проверете при класните ръководители точните часове и стаи.</p>
+    </article>
+
+    <hr style="margin:28px 0;">
+
+    <article id="stipendii-2025">
+      <h2>Стипендии за учебната 2025/26</h2>
+      <p class="news-meta">Категория: <strong>Важно</strong> · Дата: <time datetime="2025-09-20">20 септември 2025</time></p>
+      <img src="images/news/stipendii.jpg" alt="Стипендии" loading="lazy" style="width:100%;border-radius:12px;margin:12px 0;">
+      <p>Информация и срокове за кандидатстване за ученически стипендии са налични в „Документи“.</p>
+    </article>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  // ако има хеш в URL, скролни до него плавно
+  window.addEventListener('load', ()=>{
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  });
+</script>
+</body>
+</html>

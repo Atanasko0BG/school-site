@@ -3,62 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Събития – СУ "Петко Р. Славейков"</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet"/>
+  <title>СУ "Петко Р. Славейков" – Събития</title>
 
-  <style>
-    .calendar-section {
-      background-color: var(--background-color);
-      padding: 60px 20px;
-      text-align: center;
-    }
+  <meta name="description" content="Календар на събитията в СУ 'П. Р. Славейков' – родителски срещи, олимпиади, празници, изпити и тържества.">
+  <meta property="og:title" content='СУ "Петко Р. Славейков" – Събития'>
+  <meta property="og:description" content="График на училищните събития.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/hero-1.jpg">
+  <meta name="theme-color" content="#2d4ea1">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    .calendar-section h2 {
-      font-size: 2.4em;
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
+  <link rel="stylesheet" href="style.css">
+  <!-- FullCalendar v6 (CDN) -->
+  <link rel="preload" as="script" href="https://unpkg.com/fullcalendar@6.1.15/index.global.min.js">
+  <link rel="preload" as="script" href="https://unpkg.com/fullcalendar@6.1.15/locales-all.global.min.js">
+  <script src="https://unpkg.com/fullcalendar@6.1.15/index.global.min.js" defer></script>
+  <script src="https://unpkg.com/fullcalendar@6.1.15/locales-all.global.min.js" defer></script>
 
-    .calendar-section p {
-      font-size: 1.1em;
-      color: #555;
-      margin-bottom: 40px;
-    }
-
-    #calendar {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-  </style>
+  <link rel="icon" type="image/png" href="favicon.png">
 </head>
-
 <body>
-
-  <header>
+<header>
   <div class="logo">
     <img src="logo.png" alt="Лого на училището" loading="lazy" decoding="async">
     <div>
       <h1>СУ "Петко Р. Славейков"</h1>
       <p>гр. Кричим</p>
     </div>
-
-    <!-- Бургер бутон с ARIA -->
-    <button class="burger"
-            aria-label="Отвори основното меню"
-            aria-controls="nav-links"
-            aria-expanded="false"
-            onclick="toggleMenu(this)">
+    <button class="burger" aria-label="Отвори основното меню" aria-controls="nav-links" aria-expanded="false" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
-
   <nav>
     <ul id="nav-links">
       <li><a href="index.html">Начало</a></li>
@@ -73,54 +48,109 @@
   </nav>
 </header>
 
+<section class="calendar-section">
+  <h2>Събития</h2>
+  <p>Следете календара за важни дати: родителски срещи, олимпиади, празници, изпити и тържества.</p>
 
-  <section class="hero">
-    <h2>Календар на събитията</h2>
-    <p>Вижте предстоящите събития и активности в училището</p>
-  </section>
+  <!-- легенда за категориите -->
+  <div class="card" style="max-width:1000px;margin:0 auto 16px;">
+    <div class="legend">
+      <span><i class="dot dot--parents"></i> Родителска среща</span>
+      <span><i class="dot dot--contest"></i> Олимпиада/Състезание</span>
+      <span><i class="dot dot--holiday"></i> Празничен ден</span>
+      <span><i class="dot dot--exam"></i> Изпити/НВО</span>
+      <span><i class="dot dot--event"></i> Събитие/Тържество</span>
+    </div>
+  </div>
 
-  <section class="calendar-section">
-    <h2>Училищни събития</h2>
-    <p>Следете важните дати и събития в училището</p>
-    <div id="calendar"></div>
-  </section>
+  <div id="calendar"></div>
+</section>
 
-  <footer>
-    <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
-  </footer>
+<footer>
+  <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
+</footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const calendarEl = document.getElementById('calendar');
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        locale: 'bg',
-        firstDay: 1,
-        headerToolbar: {
-          start: 'prev,next today',
-          center: 'title',
-          end: 'dayGridMonth,listMonth'
-        },
-        buttonText: {
-          today: 'Днес',
-          month: 'Месец',
-          list: 'Списък'
-        },
-        events: [
-          { title: 'Първи учебен ден', start: '2025-09-15' },
-          { title: 'Коледен концерт', start: '2025-12-20' },
-          { title: 'Пролетна ваканция', start: '2026-04-01', end: '2026-04-07' },
-          { title: 'Родителска среща', start: '2025-11-10' }
-        ]
-      });
-      calendar.render();
+<script src="script.js"></script>
+<script>
+  // Инициализация на FullCalendar
+  window.addEventListener('load', function(){
+    const calEl = document.getElementById('calendar');
+    if (!calEl || !window.FullCalendar) return;
+
+    // Responsive изглед: списък за мобилни, календар за десктоп
+    function defaultView() {
+      return window.matchMedia('(max-width: 900px)').matches ? 'listMonth' : 'dayGridMonth';
+    }
+
+    const calendar = new FullCalendar.Calendar(calEl, {
+      locale: 'bg',
+      timeZone: 'Europe/Sofia',
+      firstDay: 1,
+      initialView: defaultView(),
+      height: 'auto',
+      nowIndicator: true,
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,listMonth'
+      },
+      buttonText: {
+        today: 'Днес',
+        month: 'Месец',
+        list: 'Списък'
+      },
+      // по-четими събития в списъка
+      listDayFormat: { weekday: 'long', month: 'short', day: 'numeric' },
+
+      // примерни събития — смени/добавяй
+      events: [
+        // Празник (цял ден)
+        { title: 'Ден на учителя (празничен ден)', start: '2025-10-05', display: 'auto', classNames: ['fc-event--holiday'] },
+
+        // Родителски срещи
+        { title: 'Родителска среща 5–7 клас', start: '2025-10-08T18:00:00', end: '2025-10-08T19:00:00', classNames: ['fc-event--parents'], extendedProps: { place: 'Актова зала' } },
+        { title: 'Родителска среща 1–4 клас', start: '2025-10-09T18:00:00', end: '2025-10-09T19:00:00', classNames: ['fc-event--parents'], extendedProps: { place: 'Класни стаи' } },
+
+        // Олимпиади/Състезания
+        { title: 'Математическо състезание', start: '2025-10-18T10:00:00', end: '2025-10-18T12:00:00', classNames: ['fc-event--contest'], extendedProps: { place: 'Каб. 305' } },
+
+        // Изпити / НВО (примерни дати)
+        { title: 'НВО 7. клас – БЕЛ (примерна дата)', start: '2025-06-10', classNames: ['fc-event--exam'] },
+        { title: 'НВО 7. клас – Математика (примерна дата)', start: '2025-06-12', classNames: ['fc-event--exam'] },
+
+        // Училищни тържества/събития
+        { title: 'Тържествен концерт', start: '2025-12-19T17:30:00', end: '2025-12-19T19:00:00', classNames: ['fc-event--event'], extendedProps: { place: 'Читалище' } }
+      ],
+
+      eventDidMount: (info) => {
+        // Tooltip с място/час (семпъл, без външни библиотеки)
+        const place = info.event.extendedProps.place;
+        if (place) {
+          info.el.title = place;
+        }
+      },
+
+      eventClick: (info) => {
+        // При клик – леко четим текст за часа и мястото
+        const e = info.event;
+        const start = e.start;
+        const end = e.end;
+        const place = e.extendedProps.place ? `Място: ${e.extendedProps.place}\n` : '';
+        const time = start
+          ? `От: ${start.toLocaleString('bg-BG')}` + (end ? `\nДо: ${end.toLocaleString('bg-BG')}` : '')
+          : '';
+        alert(`${e.title}\n${place}${time}`);
+      }
     });
 
-    function toggleMenu() {
-      const nav = document.querySelector('nav ul');
-      nav.classList.toggle('active');
-    }
-  </script>
+    calendar.render();
+
+    // Смяна на изгледа при resize
+    window.addEventListener('resize', () => {
+      const v = defaultView();
+      if (calendar.view.type !== v) calendar.changeView(v);
+    });
+  });
+</script>
 </body>
 </html>

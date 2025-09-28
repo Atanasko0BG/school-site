@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Админ – Качване на документи</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: sans-serif; background:#f4f6fb; }
+    .admin-wrap { max-width: 720px; margin: 40px auto; }
+    .admin-box { padding: 20px; background:#fff; border-radius:16px; box-shadow:0 12px 30px rgba(13,35,80,.08); }
+    .row { display:grid; gap:12px; grid-template-columns: 1fr 1fr; }
+    .row .full { grid-column: 1 / -1; }
+    .input, select { width:100%; padding:12px 14px; border-radius:12px; border:1px solid #e0e0e0; }
+    .muted { color:#607d8b; font-size:.9rem; }
+    .hidden { display:none; }
+    .btn { border-radius: 999px; padding: 10px 20px; background:#2d4ea1; color:#fff; border:none; cursor:pointer; }
+    .btn:hover { background:#1b3275; }
+    .list { margin-top:18px; }
+    .list li { padding:10px 12px; background:#f8fafc; border-radius:10px; margin-bottom:8px; display:flex; justify-content:space-between; }
+  </style>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <section class="admin-wrap">
+    <h2>Админ – документи</h2>
+
+    <!-- Login -->
+    <div id="login" class="admin-box">
+      <div class="row">
+        <input id="email" class="input" type="email" placeholder="Имейл (админ)">
+        <input id="password" class="input" type="password" placeholder="Парола">
+      </div>
+      <div style="margin-top:12px;">
+        <button class="btn" id="btn-login">Вход</button>
+      </div>
+      <p id="login-msg" class="muted"></p>
+    </div>
+
+    <!-- Uploader -->
+    <div id="uploader" class="admin-box hidden">
+      <h3>Качване на документ</h3>
+      <div class="row">
+        <input id="title" class="input full" type="text" placeholder="Заглавие на документа" required>
+        <select id="category" class="input">
+          <option value="правилници">Правилници</option>
+          <option value="графици">Графици</option>
+          <option value="образци">Образци</option>
+          <option value="стипендии">Стипендии</option>
+        </select>
+        <input id="file" class="input full" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx" required>
+      </div>
+      <div style="margin-top:12px;">
+        <button class="btn" id="btn-upload">Качи</button>
+        <span id="status" class="muted"></span>
+      </div>
+
+      <h4 style="margin-top:18px;">Последно качени</h4>
+      <ul id="recent" class="list"></ul>
+    </div>
+  </section>
+
+<script>
+  // Замени тези редове със своите данни
+  const SUPABASE_URL = "https://oygmrzxtkzguehhwjyib.supabase.co";
+  const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im95Z21yenh0a3pndWVoaHdqeWliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkwODg2NTIsImV4cCI6MjA3NDY2NDY1Mn0.Ot7mSNlytKkT5N-GfWq2PbT0U92uiV8pvQghhgU6yM0";
+
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+  const $ = (id)=>document.getElementById(id);
+  const loginBox = $('login'), uploader = $('uploader');
+
+  $('btn-login').addEventListener('click', async ()=>{
+    const email = $('email').value.trim();
+    const password = $('password').value;
+    $('login-msg').textContent = 'Влизане…';
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) { $('login-msg').textContent = 'Грешка: ' + error.message; return; }
+    $('login-msg').textContent = 'Готово.';
+    loginBox.classList.add('hidden');
+    uploader.classList.remove('hidden');
+    loadRecent();
+  });
+
+  $('btn-upload').addEventListener('click', async ()=>{
+    const file = $('file').files[0];
+    const title = $('title').value.trim();
+    const category = $('category').value;
+    if (!file || !title) { alert('Попълни заглавие и избери файл.'); return; }
+
+    const now = new Date();
+    const folder = `${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,'0')}`;
+    const path = `${folder}/${Date.now()}-${file.name}`;
+
+    const { error: upErr } = await supabase.storage.from('docs').upload(path, file);
+    if (upErr) { $('status').textContent = 'Грешка: ' + upErr.message; return; }
+
+    const { data: urlData } = supabase.storage.from('docs').getPublicUrl(path);
+    const url = urlData.publicUrl;
+
+    const sizeKb = Math.round(file.size / 1024);
+    const ext = file.name.split('.').pop();
+
+    const { error: insErr } = await supabase.from('documents').insert({
+      title, category, url, path, ext, size_kb: sizeKb
+    });
+    if (insErr) { $('status').textContent = 'Грешка при запис: ' + insErr.message; return; }
+
+    $('status').textContent = 'Готово!';
+    $('title').value = ''; $('file').value = '';
+    loadRecent();
+  });
+
+  async function loadRecent(){
+    const { data } = await supabase.from('documents').select('*').order('created_at', { ascending: false }).limit(5);
+    const ul = $('recent'); ul.innerHTML = '';
+    (data||[]).forEach(d=>{
+      const li = document.createElement('li');
+      li.innerHTML = `<span>${d.title} (${d.category})</span>
+                      <a class="btn" href="${d.url}" target="_blank">Преглед</a>`;
+      ul.appendChild(li);
+    });
+  }
+</script>
+</body>
+</html>

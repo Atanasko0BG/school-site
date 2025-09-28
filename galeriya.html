@@ -3,81 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Галерия – СУ "Петко Р. Славейков"</title>
+  <title>СУ "Петко Р. Славейков" - Галерия</title>
+
+  <meta name="description" content="Галерия със снимки от събития и ежедневието в СУ 'П. Р. Славейков', гр. Кричим.">
+  <meta property="og:title" content='СУ "Петко Р. Славейков" – Галерия'>
+  <meta property="og:description" content="Снимки от училищния живот и инициативи.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/hero-1.jpg">
+  <meta name="theme-color" content="#2d4ea1">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon.png">
-
-  <style>
-    .gallery-section {
-      padding: 40px 20px;
-      background: var(--background-color);
-      text-align: center;
-    }
-
-    .gallery-section h2 {
-      margin-bottom: 30px;
-      color: var(--primary-color);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 20px 0;
-    }
-
-    .gallery-grid img {
-      width: 100%;
-      border-radius: 12px;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    .gallery-grid img:hover {
-      transform: scale(1.05);
-    }
-
-    .lightbox {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 12px;
-      box-shadow: 0 0 20px black;
-      cursor: zoom-out;
-    }
-  </style>
 </head>
 <body>
-  <header>
+<header>
   <div class="logo">
     <img src="logo.png" alt="Лого на училището" loading="lazy" decoding="async">
     <div>
       <h1>СУ "Петко Р. Славейков"</h1>
       <p>гр. Кричим</p>
     </div>
-
-    <!-- Бургер бутон с ARIA -->
-    <button class="burger"
-            aria-label="Отвори основното меню"
-            aria-controls="nav-links"
-            aria-expanded="false"
-            onclick="toggleMenu(this)">
+    <button class="burger" aria-label="Отвори основното меню" aria-controls="nav-links" aria-expanded="false" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
-
   <nav>
     <ul id="nav-links">
       <li><a href="index.html">Начало</a></li>
@@ -92,56 +43,47 @@
   </nav>
 </header>
 
+<section>
+  <h2>Галерия</h2>
+  <p>Моменти от училищния живот и събития.</p>
 
-<section class="hero">
-    <h2>Галерия</h2>
-  </section>
-
-  <section class="gallery-section">
-    <h2>Училищни моменти</h2>
-    <div class="gallery-grid">
-      <img class="gallery-item" src="images/gallery1.png" alt="Снимка 1">
-      <img class="gallery-item" src="images/gallery2.jpg" alt="Снимка 2">
-      <img class="gallery-item" src="images/gallery3.jpg" alt="Снимка 3">
-      <img class="gallery-item" src="images/gallery4.jpg" alt="Снимка 4">
+  <div class="card">
+    <div class="gallery-grid" data-gallery>
+      <!-- Примерен елемент:
+        <a href="#" data-full="images/gallery/full/01.jpg" data-caption="Откриване на учебната година">
+          <img src="images/gallery/thumbs/01.jpg" alt="Откриване на учебната година">
+        </a>
+      -->
+      <a href="#" data-full="images/gallery/full/01.jpg" data-caption="Откриване на учебната година">
+        <img src="images/gallery/" alt="Откриване на учебната година">
+      </a>
+      <a href="#" data-full="images/gallery/full/02.jpg" data-caption="Учебен процес">
+        <img src="images/gallery1.png" alt="Учебен процес">
+      </a>
+      <a href="#" data-full="images/gallery/full/03.jpg" data-caption="Извънкласни дейности">
+        <img src="images/gallery/thumbs/03.jpg" alt="Извънкласни дейности">
+      </a>
+      <!-- добавяй по същия шаблон -->
     </div>
-  </section>
-
-  <div class="lightbox" id="lightbox">
-    <img src="" alt="Уголемено изображение">
   </div>
+</section>
 
-  <footer>
-    <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
-  </footer>
+<footer>
+  <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
+</footer>
 
-  <script>
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-
-    galleryItems.forEach(img => {
-      img.addEventListener('click', () => {
-        lightbox.style.display = 'flex';
-        lightboxImg.src = img.src;
-      });
-    });
-
-    lightbox.addEventListener('click', () => {
-      lightbox.style.display = 'none';
-      lightboxImg.src = '';
-    });
-
-    function toggleMenu() {
-      const nav = document.getElementById('nav-links');
-      nav.classList.toggle('active');
-    }
-  </script>
-  <script>
-  function toggleMenu() {
-    document.querySelector('nav ul').classList.toggle('active');
+<!-- лека grid стилизация – можеш да преместиш в style.css, ако искаш -->
+<style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
   }
-</script>
+  .gallery-grid a { display:block; border-radius: 12px; overflow: hidden; }
+  .gallery-grid img { width: 100%; height: 180px; object-fit: cover; display:block; }
+  @media (max-width: 480px){ .gallery-grid img { height: 150px; } }
+</style>
 
+<script src="script.js"></script>
 </body>
 </html>

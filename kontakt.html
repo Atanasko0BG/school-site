@@ -3,56 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Контакти – СУ "Петко Р. Славейков"</title>
+  <title>СУ "Петко Р. Славейков" - Контакти</title>
+
+  <meta name="description" content="Контакти на СУ 'П. Р. Славейков' – адрес, телефон, имейл, карта.">
+  <meta property="og:title" content='СУ "Петко Р. Славейков" – Контакти'>
+  <meta property="og:description" content="Как да ни намерите и свържете с нас.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/hero-1.jpg">
+  <meta name="theme-color" content="#2d4ea1">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon.png">
-  <style>
-    .contact-section {
-      background: var(--background-color);
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .contact-card {
-      max-width: 600px;
-      background: var(--card-bg);
-      margin: 0 auto;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    .contact-card h2 {
-      color: var(--primary-color);
-      margin-bottom: 20px;
-    }
-
-    .contact-card p {
-      font-size: 1.1em;
-      margin-bottom: 10px;
-    }
-  </style>
 </head>
 <body>
-  <header>
+<header>
   <div class="logo">
     <img src="logo.png" alt="Лого на училището" loading="lazy" decoding="async">
     <div>
       <h1>СУ "Петко Р. Славейков"</h1>
       <p>гр. Кричим</p>
     </div>
-
-    <!-- Бургер бутон с ARIA -->
-    <button class="burger"
-            aria-label="Отвори основното меню"
-            aria-controls="nav-links"
-            aria-expanded="false"
-            onclick="toggleMenu(this)">
+    <button class="burger" aria-label="Отвори основното меню" aria-controls="nav-links" aria-expanded="false" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
-
   <nav>
     <ul id="nav-links">
       <li><a href="index.html">Начало</a></li>
@@ -67,35 +43,76 @@
   </nav>
 </header>
 
+<section>
+  <h2>Контакти</h2>
 
-<section class="hero">
-    <h2>Контакти</h2>
-  </section>
+  <div class="card">
+    <p><strong>Адрес:</strong> СУ „Петко Р. Славейков“, гр. Кричим</p>
+    <p><strong>Телефон:</strong> <a href="tel:03145 2473">03145 2473</a></p>
+    <p><strong>Телефон 2:</strong> <a href="tel:0876975160">0876975160</a></p>
+    <p><strong>Имейл:</strong> <a href="info-1601403@edu.mon.bg">info-1601403@edu.mon.bg</a></p>
+    <p><strong>Имейл 2:</strong> <a href="pslaveikov@abv.bg">pslaveikov@abv.bg</a></p>
+  </div>
 
-  <section class="contact-section">
-    <div class="contact-card">
-      <p><strong>Адрес:</strong> ул. "Примерна" №1, 4220 гр. Кричим</p>
-      <p><strong>Телефон:</strong> 03145 / 1234</p>
-      <p><strong>Имейл:</strong> su.slaveikov@school.bg</p>
-      <p><strong>Работно време:</strong> Пон-Петък, 08:00 - 16:30</p>
-    </div>
-  </section>
+  <div class="card" style="padding:0; overflow:hidden;">
+    <!-- Важно: без интервал след запетаята -->
+    <iframe
+      title="Карта: СУ 'Петко Р. Славейков', Кричим"
+      src="https://www.google.com/maps?q=42.047549,24.469337&z=17&output=embed"
+      width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
 
-  <footer>
-    <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
-  </footer>
+  <div class="card card--form">
+    <h3 style="text-align:center; margin-bottom:16px;">Пишете ни</h3>
 
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById('nav-links');
-      nav.classList.toggle('active');
-    }
-  </script>
-  <script>
-  function toggleMenu() {
-    document.querySelector('nav ul').classList.toggle('active');
-  }
-</script>
+    <!-- AJAX + toast (съвместимо със script.js от мен) -->
+    <form id="contact-form"
+          action="https://formspree.io/f/xgvnojyo"
+          method="POST"
+          class="contact-form"
+          autocomplete="on"
+          novalidate>
 
+      <div class="form-row">
+        <div class="form-field">
+          <label for="name">Име</label>
+          <input class="input" id="name" name="name" type="text" placeholder="Иван Иванов" required>
+          <div class="helper">Как да се обърнем към вас</div>
+        </div>
+
+        <div class="form-field">
+          <label for="email">Имейл</label>
+          <input class="input" id="email" name="email" type="email" inputmode="email" placeholder="name@example.com" required>
+          <div class="helper">Ще използваме имейла само за отговор</div>
+        </div>
+      </div>
+
+      <div class="form-field" style="margin-top:12px;">
+        <label for="message">Съобщение</label>
+        <textarea class="textarea" id="message" name="message" placeholder="Пишете тук…" minlength="10" required></textarea>
+        <div class="helper">Минимум 10 символа</div>
+      </div>
+
+      <!-- тема (по желание) -->
+      <input type="hidden" name="_subject" value="Съобщение от сайта на СУ 'П. Р. Славейков'">
+      <!-- прост honeypot против спам -->
+      <input type="text" name="_hp" style="display:none">
+
+      <div class="form-actions">
+        <button class="btn" type="submit" id="submit-btn">Изпрати</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
+</footer>
+
+<!-- контейнер за toast съобщения -->
+<div id="toast-root" aria-live="polite" aria-atomic="true"></div>
+
+<script src="script.js"></script>
 </body>
 </html>

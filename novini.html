@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Новини – СУ "Петко Р. Славейков"</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>СУ "Петко Р. Славейков" – Новини</title>
+
+  <meta name="description" content="Новини и съобщения от СУ 'П. Р. Славейков', гр. Кричим. Събития, успехи, съобщения към родители.">
+  <meta property="og:title" content='СУ "Петко Р. Славейков" – Новини'>
+  <meta property="og:description" content="Последните новини от училището.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/hero-1.jpg">
+  <meta name="theme-color" content="#2d4ea1">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
-  <header>
+<header>
   <div class="logo">
     <img src="logo.png" alt="Лого на училището" loading="lazy" decoding="async">
     <div>
       <h1>СУ "Петко Р. Славейков"</h1>
       <p>гр. Кричим</p>
     </div>
-
-    <!-- Бургер бутон с ARIA -->
-    <button class="burger"
-            aria-label="Отвори основното меню"
-            aria-controls="nav-links"
-            aria-expanded="false"
-            onclick="toggleMenu(this)">
+    <button class="burger" aria-label="Отвори основното меню" aria-controls="nav-links" aria-expanded="false" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
-
   <nav>
     <ul id="nav-links">
       <li><a href="index.html">Начало</a></li>
@@ -41,44 +43,88 @@
   </nav>
 </header>
 
+<section>
+  <h2>Новини</h2>
+  <p>Последните новини, успехи и съобщения.</p>
 
-
-  <section class="hero">
-    <h2>Актуални новини</h2>
-    <p>Последните събития и постижения на нашите ученици и преподаватели</p>
-  </section>
-
-  <section>
-    <div class="card">
-      <h2>🎓 Отлично представяне на олимпиада</h2>
-      <p>Наши ученици спечелиха призови места на областния кръг по математика. Гордеем се с тяхната упоритост и успех!</p>
+  <!-- Търсачка + филтри (чипове) -->
+  <div class="card news-controls">
+    <div class="news-filters">
+      <input id="news-search" class="input" type="search" placeholder="Търси по заглавие или съдържание…">
+      <div class="news-chips" role="tablist" aria-label="Категории">
+        <button class="chip active" data-cat="" aria-pressed="true">Всички</button>
+        <button class="chip" data-cat="събитие" aria-pressed="false">Събития</button>
+        <button class="chip" data-cat="успех" aria-pressed="false">Успехи</button>
+        <button class="chip" data-cat="съобщение" aria-pressed="false">Съобщения</button>
+        <button class="chip" data-cat="важно" aria-pressed="false">Важно</button>
+      </div>
     </div>
-    <div class="card">
-      <h2>📚 Седмица на четенето</h2>
-      <p>В училището се проведе поредица от дейности, посветени на насърчаването на четенето и любовта към книгите.</p>
-    </div>
-  </section>
+  </div>
 
-  <section class="cta-buttons">
-    <a href="subitiya.html" class="btn">📅 Виж календара</a>
-    <a href="kontakt.html" class="btn">📞 Контакти</a>
-  </section>
+  <!-- ГРИД с новини -->
+  <div id="news-grid" class="news-grid">
+    <!-- Карта 1 -->
+<article class="news-card" data-cat="събитие" data-date="2025-09-15">
+  <a class="news-media" href="news/otkrivane-2025.html">
+    <img src="images/news/15 september.png" alt="Откриване на учебната година" loading="lazy">
+    <span class="news-badge">Събитие</span>
+  </a>
+  <div class="news-body">
+    <h3 class="news-title"><a href="news/otkrivane-2025.html">Откриване на учебната 2025/26</a></h3>
+    <p class="news-meta">15 септември 2025</p>
+    <p class="news-excerpt">Тържествено откриване на двора на училището с програма и гости…</p>
+    <a class="news-more" href="news/otkrivane-2025.html">Прочети повече →</a>
+  </div>
+</article>
 
-  <footer>
-    <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
-  </footer>
+<!-- Карта 2 -->
+<article class="news-card" data-cat="успех" data-date="2025-10-01">
+  <a class="news-media" href="news/matematika-otbor.html">
+    <img src="images/news/math.jpg" alt="Отбор по математика" loading="lazy">
+    <span class="news-badge badge--success">Успех</span>
+  </a>
+  <div class="news-body">
+    <h3 class="news-title"><a href="news/matematika-otbor.html">Отличие за отбора по математика</a></h3>
+    <p class="news-meta">1 октомври 2025</p>
+    <p class="news-excerpt">Нашите ученици спечелиха второ място в областното състезание…</p>
+    <a class="news-more" href="news/matematika-otbor.html">Прочети повече →</a>
+  </div>
+</article>
 
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById('nav-links');
-      nav.classList.toggle('active');
-    }
-  </script>
-  <script>
-  function toggleMenu() {
-    document.querySelector('nav ul').classList.toggle('active');
-  }
-</script>
+<!-- Карта 3 -->
+<article class="news-card" data-cat="съобщение" data-date="2025-09-28">
+  <a class="news-media" href="news/grafik-sreshti.html">
+    <img src="images/news/parents.jpg" alt="Родителски срещи" loading="lazy">
+    <span class="news-badge badge--info">Съобщение</span>
+  </a>
+  <div class="news-body">
+    <h3 class="news-title"><a href="news/grafik-sreshti.html">График на родителските срещи</a></h3>
+    <p class="news-meta">28 септември 2025</p>
+    <p class="news-excerpt">Публикуван е графикът по класове за предстоящите родителски срещи…</p>
+    <a class="news-more" href="news/grafik-sreshti.html">Прочети повече →</a>
+  </div>
+</article>
 
+<!-- Карта 4 -->
+<article class="news-card" data-cat="важно" data-date="2025-09-20">
+  <a class="news-media" href="news/stipendii-2025.html">
+    <img src="images/news/stipendii.jpg" alt="Стипендии" loading="lazy">
+    <span class="news-badge badge--warn">Важно</span>
+  </a>
+  <div class="news-body">
+    <h3 class="news-title"><a href="news/stipendii-2025.html">Стипендии за учебната 2025/26</a></h3>
+    <p class="news-meta">20 септември 2025</p>
+    <p class="news-excerpt">Информация и срокове за кандидатстване за ученически стипендии…</p>
+    <a class="news-more" href="news/stipendii-2025.html">Прочети повече →</a>
+  </div>
+</article>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>

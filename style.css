@@ -372,3 +372,639 @@ footer {
   }
 }
 
+/* Фокус и активен линк в менюто */
+nav a:focus {
+  outline: 2px dashed var(--accent-color);
+  outline-offset: 4px;
+}
+nav a.active::after {
+  width: 100%;
+}
+
+/* По-добра зона за клик на бургер бутона */
+.burger {
+  background: transparent;
+  border: 0;
+  padding: 6px;
+}
+
+/* Намален motion за хора със зададени предпочитания */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+/* ====== LIGHTBOX styles ====== */
+.lightbox.hidden { display: none; }
+.lightbox {
+  position: fixed; inset: 0; z-index: 10000;
+  display: grid; place-items: center;
+}
+.lightbox__backdrop {
+  position: absolute; inset: 0; background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(2px);
+}
+.lightbox__content {
+  position: relative;
+  background: #000;
+  border-radius: 12px;
+  max-width: min(95vw, 1100px);
+  width: 100%;
+  padding: 10px 50px 40px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+}
+.lightbox__img {
+  display: block; width: 100%; height: auto; border-radius: 8px;
+}
+.lightbox__caption {
+  color: #fff; opacity: 0.9; margin-top: 10px; text-align: center; font-size: 0.95rem;
+}
+.lightbox__close {
+  position: absolute; top: 8px; right: 8px;
+  background: transparent; color: #fff; border: 0; font-size: 2rem; line-height: 1;
+  cursor: pointer;
+}
+.lightbox__controls {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.lightbox__prev, .lightbox__next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.15); color: #fff; border: 0; font-size: 2rem;
+  width: 44px; height: 44px; border-radius: 999px; cursor: pointer; pointer-events: auto;
+}
+.lightbox__prev { left: 10px; }
+.lightbox__next { right: 10px; }
+
+@media (max-width: 768px) {
+  .lightbox__content { padding: 10px 16px 26px; }
+  .lightbox__prev, .lightbox__next { width: 38px; height: 38px; font-size: 1.6rem; }
+}
+
+/* ===== Контактна форма – модерен стил ===== */
+.contact-form {
+  --input-bg: #fff;
+  --input-bd: #e6ebf3;
+  --input-bd-focus: var(--accent-color);
+  --input-shadow: 0 6px 18px rgba(0,0,0,0.06);
+
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field label {
+  font-weight: 600;
+  color: #455a64;
+  font-size: 0.95rem;
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--input-bd);
+  background: var(--input-bg);
+  box-shadow: var(--input-shadow);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .05s ease;
+}
+
+.input:focus, .textarea:focus {
+  border-color: var(--input-bd-focus);
+  box-shadow: 0 8px 22px rgba(0,188,212,.18);
+}
+
+.input:active, .textarea:active { transform: scale(0.998); }
+
+.textarea { min-height: 140px; resize: vertical; }
+
+/* Помощен текст под полето */
+.helper {
+  color: #7a8a98;
+  font-size: 0.85rem;
+  margin-top: -2px;
+}
+
+/* Грешки при валидиране (HTML5) */
+.input:invalid, .textarea:invalid {
+  border-color: #e57373;
+}
+.input:invalid:focus, .textarea:invalid:focus {
+  box-shadow: 0 8px 22px rgba(229,115,115,.2);
+}
+
+/* Подравняване на бутона */
+.form-actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+}
+.form-actions .btn {
+  border-radius: 999px;
+  padding: 12px 26px;
+}
+
+/* „Картичка“ контейнерът да е малко по-въздушен за формата */
+.card--form {
+  padding: 28px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(13, 35, 80, 0.06);
+}
+
+/* Мобилни */
+@media (max-width: 768px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+/* ===== Toast (успех/грешка) ===== */
+#toast-root {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 11000;
+  display: grid;
+  gap: 10px;
+}
+
+.toast {
+  background: #0b2f5b;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 26px rgba(0,0,0,.18);
+  transform: translateY(12px);
+  opacity: 0;
+  transition: opacity .25s ease, transform .25s ease;
+  max-width: min(90vw, 420px);
+  font-size: 0.95rem;
+}
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+@media (max-width: 520px) {
+  #toast-root { left: 12px; right: 12px; bottom: 12px; }
+  .toast { justify-self: center; width: 100%; }
+}
+
+
+
+/* ===== ЕКИП – контроли и карти ===== */
+.team-controls .controls-row {
+  display: grid;
+  grid-template-columns: 1fr 220px 220px;
+  gap: 12px;
+}
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* Грид на картите */
+.teacher-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+}
+
+/* Карта */
+.teacher-card {
+  grid-column: span 3; /* 4 в ред на ≥1200px */
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  overflow: hidden;
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.teacher-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.08);
+}
+
+.teacher-photo {
+  aspect-ratio: 4/3;
+  background: #eaf1ff;
+  overflow: hidden;
+}
+.teacher-photo img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block;
+}
+
+.teacher-body {
+  padding: 16px 16px 18px;
+}
+.teacher-name {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+  color: var(--primary-color);
+}
+.teacher-role {
+  color: #546e7a; font-weight: 600; margin-bottom: 4px;
+}
+.teacher-subject {
+  color: #607d8b; font-size: .95rem; margin-bottom: 10px;
+}
+.teacher-meta {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  font-size: .92rem; color: #546e7a;
+}
+.teacher-meta a {
+  color: var(--accent-color); text-decoration: none; font-weight: 600;
+}
+
+/* Респонсив */
+@media (max-width: 1200px) {
+  .teacher-card { grid-column: span 4; } /* 3 в ред */
+}
+@media (max-width: 900px) {
+  .team-controls .controls-row {
+    grid-template-columns: 1fr;
+  }
+  .teacher-card { grid-column: span 6; } /* 2 в ред */
+}
+@media (max-width: 520px) {
+  .teacher-card { grid-column: span 12; } /* 1 в ред */
+}
+.team-section-title {
+  margin-top: 40px;
+  margin-bottom: 18px;
+  font-size: 1.6rem;
+  color: var(--primary-color);
+  border-left: 5px solid var(--accent-color);
+  padding-left: 10px;
+}
+/* ===== Екип: търсачка ===== */
+.team-search-box {
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+
+.team-search-box .input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,.05);
+}
+
+.team-search-box .input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 6px 16px rgba(0,188,212,.15);
+}
+
+/* Етикет за секции */
+.team-section-title {
+  margin-top: 40px;
+  margin-bottom: 18px;
+  font-size: 1.6rem;
+  color: var(--primary-color);
+  border-left: 5px solid var(--accent-color);
+  padding-left: 10px;
+}
+/* ===== Екип: търсачка + филтри ===== */
+.team-search-box {
+  max-width: 900px;
+  margin: 0 auto 25px;
+}
+
+.team-filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.team-filters .input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,.05);
+  min-width: 200px;
+}
+
+.team-filters .input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 6px 16px rgba(0,188,212,.15);
+}
+/* ===== Екип: търсачка + чипове ===== */
+.team-search-box { max-width: 900px; margin: 0 auto 25px; }
+.team-filters { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.filter-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.chip {
+  appearance: none;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  color: #2c3e50;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform .05s ease, box-shadow .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.chip:hover { transform: translateY(-1px); }
+.chip:focus-visible {
+  outline: 2px dashed var(--accent-color);
+  outline-offset: 3px;
+}
+.chip.active {
+  background: var(--accent-color);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 8px 18px rgba(0,188,212,.25);
+}
+
+/* По-широк layout за големи екрани: търсачка вляво, чипове вдясно */
+@media (min-width: 820px) {
+  .team-filters { grid-template-columns: 1fr auto; align-items: center; }
+}
+/* ===== Календар: легенда и категории ===== */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #455a64;
+}
+.legend .dot {
+  display: inline-block;
+  width: 12px; height: 12px; border-radius: 999px;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+
+/* Цветове по категории (да съвпадат с event classNames) */
+.dot--parents, .fc-event--parents { background: #42a5f5 !important; color: #fff !important; border-color: transparent !important; }
+.dot--contest, .fc-event--contest { background: #66bb6a !important; color: #fff !important; border-color: transparent !important; }
+.dot--holiday, .fc-event--holiday { background: #ffa726 !important; color: #fff !important; border-color: transparent !important; }
+.dot--exam, .fc-event--exam { background: #ef5350 !important; color: #fff !important; border-color: transparent !important; }
+.dot--event, .fc-event--event { background: #7e57c2 !important; color: #fff !important; border-color: transparent !important; }
+
+/* По-компактни събития */
+#calendar .fc .fc-daygrid-event {
+  border-radius: 8px;
+  padding: 2px 6px;
+}
+#calendar .fc .fc-list-event-dot {
+  border-radius: 999px;
+}
+#calendar .fc .fc-toolbar-title {
+  font-size: 1.25rem;
+}
+
+/* Мобилен изглед: по-малко сенки за контейнера от style.css */
+@media (max-width: 768px) {
+  #calendar { box-shadow: none; }
+}
+
+/* ===== FullCalendar – модерни бутони (pill/ghost) ===== */
+#calendar .fc .fc-toolbar {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+#calendar .fc .fc-toolbar-chunk {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Заглавие */
+#calendar .fc .fc-toolbar-title {
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+/* Групите да изглеждат като „сегментиран контрол“ */
+#calendar .fc .fc-button-group {
+  background: #ffffff;
+  border: 1px solid #e5eaf2;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+  overflow: hidden;
+}
+
+/* Базов стил за бутони */
+#calendar .fc .fc-button {
+  border: 0;
+  border-radius: 999px; /* pill */
+  background: transparent;
+  color: #2c3e50;
+  font-weight: 600;
+  text-transform: none;
+  padding: 8px 14px;
+  box-shadow: none;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.05s ease;
+}
+
+/* Иконките да имат малко разстояние */
+#calendar .fc .fc-button .fc-icon {
+  margin-top: -2px;
+}
+
+/* Ховър/фокус */
+#calendar .fc .fc-button:hover {
+  background: #f3f6fb;
+}
+#calendar .fc .fc-button:focus-visible {
+  outline: 2px dashed var(--accent-color);
+  outline-offset: 3px;
+}
+
+/* Активни бутони в група (напр. избран изглед) */
+#calendar .fc .fc-button.fc-button-active {
+  background: var(--accent-color);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(0,188,212,.25);
+}
+
+/* Отделните (извън група): prev/next/today като „ghost“ бутони */
+
+  /* оставяме ги по дизайн на групата; правило за яснота */
+#calendar .fc .fc-prev-button,
+#calendar .fc .fc-next-button,
+#calendar .fc .fc-today-button {
+  border: 1px solid #e5eaf2;
+  background: #fff;
+  color: #2c3e50;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+#calendar .fc .fc-today-button {
+  font-weight: 700;
+}
+#calendar .fc .fc-prev-button:hover,
+#calendar .fc .fc-next-button:hover,
+#calendar .fc .fc-today-button:hover {
+  background: #f3f6fb;
+}
+
+/* Натискане */
+#calendar .fc .fc-button:active { transform: scale(0.98); }
+
+/* Деактивирани */
+#calendar .fc .fc-button:disabled {
+  opacity: .45;
+  background: #fafbfe;
+  color: #9aa6b2;
+  border-color: #eef2f7;
+  box-shadow: none;
+}
+
+/* По-компактни бутони на малък екран + центриране */
+@media (max-width: 900px) {
+  #calendar .fc .fc-toolbar {
+    justify-content: center;
+  }
+  #calendar .fc .fc-button {
+    padding: 7px 12px;
+    font-size: .95rem;
+  }
+  #calendar .fc .fc-toolbar-title {
+    font-size: 1.1rem;
+  }
+}
+/* ===== Новини: карти ===== */
+.news-controls { max-width: 1000px; margin: 0 auto 18px; }
+.news-filters { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.news-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+  margin-top: 10px;
+}
+.news-card {
+  grid-column: span 4; /* 3 в ред на ≥1200px */
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.news-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(0,0,0,.08);
+}
+.news-media {
+  display: block; position: relative;
+  aspect-ratio: 16/9; overflow: hidden;
+}
+.news-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.news-badge {
+  position: absolute; left: 10px; top: 10px;
+  background: #2d4ea1; color: #fff; font-weight: 700;
+  padding: 6px 10px; border-radius: 999px; font-size: .8rem;
+}
+.badge--success { background: #2e7d32; }
+.badge--info { background: #0277bd; }
+.badge--warn { background: #ef6c00; }
+
+.news-body { padding: 14px 16px 18px; }
+.news-title { margin-bottom: 6px; font-size: 1.05rem; }
+.news-title a { color: var(--primary-color); text-decoration: none; }
+.news-meta { color: #607d8b; font-size: .9rem; margin-bottom: 8px; }
+.news-excerpt { color: #455a64; font-size: .98rem; margin-bottom: 10px; }
+.news-more { font-weight: 700; color: var(--accent-color); text-decoration: none; }
+
+/* Single */
+.news-single h2 { color: var(--primary-color); }
+.news-single .news-meta { color: #607d8b; margin: 6px 0 10px; }
+
+/* Респонсив */
+@media (max-width: 1200px) { .news-card { grid-column: span 6; } } /* 2 в ред */
+@media (max-width: 640px)  { .news-card { grid-column: span 12; } } /* 1 в ред */
+
+/* Чипове (ползваме стила от екипа, за да е унифицирано) */
+.news-chips .chip {
+  appearance: none; border: 1px solid #e0e0e0; background: #fff; color: #2c3e50;
+  padding: 8px 14px; border-radius: 999px; font-weight: 600; font-size: .95rem; cursor: pointer;
+  transition: background-color .15s ease, color .15s ease, transform .05s ease, box-shadow .2s ease, border-color .2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.news-chips .chip:hover { transform: translateY(-1px); }
+.news-chips .chip:focus-visible { outline: 2px dashed var(--accent-color); outline-offset: 3px; }
+.news-chips .chip.active { background: var(--accent-color); color: #fff; border-color: transparent; box-shadow: 0 8px 18px rgba(0,188,212,.25); }
+
+/* Търсачка */
+#news-search {
+  padding: 12px 14px; border-radius: 12px; border: 1px solid #e0e0e0; font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,.05);
+}
+#news-search:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 6px 16px rgba(0,188,212,.15); }
+
+@media (min-width: 820px) {
+  .news-filters { grid-template-columns: 1fr auto; align-items: center; }
+}
+/* ===== Документи ===== */
+.doc-controls { max-width: 1000px; margin: 0 auto 18px; }
+.doc-filters { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.doc-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+
+#doc-search {
+  padding: 12px 14px; border-radius: 12px; border: 1px solid #e0e0e0; font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,.05);
+}
+#doc-search:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 6px 16px rgba(0,188,212,.15); }
+
+.doc-list { list-style: none; padding: 0; margin: 0 0 10px 0; display: grid; gap: 12px; }
+.doc-item {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.05);
+}
+.doc-item .doc-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--primary-color); text-decoration: none; font-weight: 600;
+}
+.doc-meta { color: #607d8b; font-size: .9rem; white-space: nowrap; }
+
+.doc-ico {
+  width: 26px; height: 32px; border-radius: 6px;
+  background: linear-gradient(180deg, #e9f2ff, #d9e7ff);
+  border: 1px solid #cfe0ff; position: relative; flex: 0 0 26px;
+}
+.doc-ico::after { /* разширение като етикет */
+  content: attr(data-ext);
+  position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+  font-size: .65rem; font-weight: 800; letter-spacing: .4px;
+  background: #2d4ea1; color: #fff; padding: 2px 6px; border-radius: 999px;
+}
+
+/* оцветяване по тип */
+.doc-item[data-ext="pdf"] .doc-ico::after { background: #e53935; }
+.doc-item[data-ext="doc"] .doc-ico::after,
+.doc-item[data-ext="docx"] .doc-ico::after { background: #1565c0; }
+.doc-item[data-ext="xls"] .doc-ico::after,
+.doc-item[data-ext="xlsx"] .doc-ico::after { background: #2e7d32; }
+
+@media (min-width: 820px) { .doc-filters { grid-template-columns: 1fr auto; align-items: center; } }
+@media (max-width: 640px) {
+  .doc-item { flex-direction: column; align-items: flex-start; }
+  .doc-meta { white-space: normal; }
+}

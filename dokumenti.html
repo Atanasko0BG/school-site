@@ -1,73 +1,34 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Документи – СУ "Петко Р. Славейков"</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>СУ "Петко Р. Славейков" – Документи</title>
+
+  <meta name="description" content="Правилници, графици, образци и други документи на СУ 'П. Р. Славейков'.">
+  <meta property="og:title" content='СУ "Петко Р. Славейков" – Документи'>
+  <meta property="og:description" content="Свали важните документи – PDF, DOCX, XLSX.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/hero-1.jpg">
+  <meta name="theme-color" content="#2d4ea1">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon.png">
-
-  <style>
-    .docs-section {
-      padding: 50px 20px;
-      background: var(--background-color);
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .docs-section h2 {
-      text-align: center;
-      color: var(--primary-color);
-      margin-bottom: 30px;
-    }
-
-    .document-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .document-list li {
-      background: var(--card-bg);
-      margin-bottom: 15px;
-      padding: 15px 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .document-list a {
-      text-decoration: none;
-      color: var(--primary-color);
-      font-weight: 600;
-    }
-
-    .document-list a:hover {
-      text-decoration: underline;
-    }
-  </style>
 </head>
 <body>
-  <header>
+<header>
   <div class="logo">
     <img src="logo.png" alt="Лого на училището" loading="lazy" decoding="async">
     <div>
       <h1>СУ "Петко Р. Славейков"</h1>
       <p>гр. Кричим</p>
     </div>
-
-    <!-- Бургер бутон с ARIA -->
-    <button class="burger"
-            aria-label="Отвори основното меню"
-            aria-controls="nav-links"
-            aria-expanded="false"
-            onclick="toggleMenu(this)">
+    <button class="burger" aria-label="Отвори основното меню" aria-controls="nav-links" aria-expanded="false" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
-
   <nav>
     <ul id="nav-links">
       <li><a href="index.html">Начало</a></li>
@@ -82,42 +43,161 @@
   </nav>
 </header>
 
+<section>
+  <h2>Документи</h2>
+  <p>Търси по заглавие или филтрирай по категория.</p>
 
-<section class="hero">
-    <h2>Официални документи</h2>
-  </section>
+  <!-- Търсачка + филтър -->
+  <div class="card doc-controls">
+    <div class="doc-filters">
+      <input id="doc-search" class="input" type="search" placeholder="Търси документ… (напр. правилник)">
+      <div class="doc-chips" role="tablist" aria-label="Категории">
+        <button class="chip active" data-cat="" aria-pressed="true">Всички</button>
+        <button class="chip" data-cat="правилници" aria-pressed="false">Правилници</button>
+        <button class="chip" data-cat="графици" aria-pressed="false">Графици</button>
+        <button class="chip" data-cat="образци" aria-pressed="false">Образци</button>
+        <button class="chip" data-cat="стипендии" aria-pressed="false">Стипендии</button>
+      </div>
+    </div>
+  </div>
 
-  <section class="docs-section">
-    <ul class="document-list">
-      <li>
-        <span>График на учебната година 2024/2025</span>
-        <a href="docs/grafik-2024-2025.pdf" download>⬇ Изтегли</a>
-      </li>
-      <li>
-        <span>Вътрешни правила за безопасност</span>
-        <a href="docs/pravila-bezopasnost.pdf" download>⬇ Изтегли</a>
-      </li>
-      <li>
-        <span>Заявление за ученическа стипендия</span>
-        <a href="docs/zayavlenie-stipendiya.pdf" download>⬇ Изтегли</a>
-      </li>
-    </ul>
-  </section>
+  <!-- Категория: Правилници -->
+  <h3 class="team-section-title">Правилници</h3>
+  <ul class="doc-list" id="docs-pravilnici">
+    <li class="doc-item" data-cat="правилници" data-ext="pdf" data-date="2025-09-15" data-size="1.2 MB">
+      <a class="doc-link" href="docs/pravnik-vutreshen-red.pdf" target="_blank" rel="noopener">
+        <span class="doc-ico"></span>
+        Правилник за вътрешния ред
+      </a>
+      <span class="doc-meta">PDF · 1.2 MB · 15.09.2025</span>
+    </li>
 
-  <footer>
-    <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
-  </footer>
+    <li class="doc-item" data-cat="правилници" data-ext="pdf" data-date="2025-09-10" data-size="980 KB">
+      <a class="doc-link" href="docs/etikoden-kodeks.pdf" target="_blank" rel="noopener">
+        <span class="doc-ico"></span>
+        Етичен кодекс
+      </a>
+      <span class="doc-meta">PDF · 980 KB · 10.09.2025</span>
+    </li>
+  </ul>
 
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById('nav-links');
-      nav.classList.toggle('active');
-    }
-  </script>
-  <script>
-  function toggleMenu() {
-    document.querySelector('nav ul').classList.toggle('active');
+  <!-- Категория: Графици -->
+  <h3 class="team-section-title">Графици</h3>
+  <ul class="doc-list" id="docs-grafici">
+    <li class="doc-item" data-cat="графици" data-ext="pdf" data-date="2025-09-12" data-size="380 KB">
+      <a class="doc-link" href="docs/grafik-dnevno-raspisanie.pdf" target="_blank" rel="noopener">
+        <span class="doc-ico"></span>
+        Дневно разписание
+      </a>
+      <span class="doc-meta">PDF · 380 KB · 12.09.2025</span>
+    </li>
+
+    <li class="doc-item" data-cat="графици" data-ext="xlsx" data-date="2025-09-20" data-size="120 KB">
+      <a class="doc-link" href="docs/grafik-deinosti.xlsx" target="_blank" rel="noopener">
+        <span class="doc-ico"></span>
+        График на дейностите (xlsx)
+      </a>
+      <span class="doc-meta">XLSX · 120 KB · 20.09.2025</span>
+    </li>
+  </ul>
+
+  <!-- Категория: Образци -->
+  <h3 class="team-section-title">Образци</h3>
+  <ul class="doc-list" id="docs-obrazci">
+    <li class="doc-item" data-cat="образци" data-ext="docx" data-date="2025-09-05" data-size="46 KB">
+      <a class="doc-link" href="docs/zayavlenie-otsustvie.docx" target="_blank" rel="noopener">
+        <span class="doc-ico"></span>
+        Заявление за отсъствие (docx)
+      </a>
+      <span class="doc-meta">DOCX · 46 KB · 05.09.2025</span>
+    </li>
+
+    <li class="doc-item" data-cat="образци" data-ext="pdf" data-date="2025-09-07" data-size="210 KB">
+      <a class="doc-link" href="docs/deklaracia-sglasie.pdf" target="_blank" rel="noopener">
+        <span class="doc-ico"></span>
+        Декларация за съгласие (pdf)
+      </a>
+      <span class="doc-meta">PDF · 210 KB · 07.09.2025</span>
+    </li>
+  </ul>
+
+  <!-- Категория: Стипендии -->
+  <h3 class="team-section-title">Стипендии</h3>
+  <ul class="doc-list" id="docs-stipendii">
+    <li class="doc-item" data-cat="стипендии" data-ext="pdf" data-date="2025-09-22" data-size="300 KB">
+      <a class="doc-link" href="docs/stipendii-usloviya-2025.pdf" target="_blank" rel="noopener">
+        <span class="doc-ico"></span>
+        Условия за кандидатстване 2025/26
+      </a>
+      <span class="doc-meta">PDF · 300 KB · 22.09.2025</span>
+    </li>
+    <li class="doc-item" data-cat="стипендии" data-ext="docx" data-date="2025-09-22" data-size="35 KB">
+      <a class="doc-link" href="docs/stipendii-formulyar.docx" target="_blank" rel="noopener">
+        <span class="doc-ico"></span>
+        Формуляр за кандидатстване (docx)
+      </a>
+      <span class="doc-meta">DOCX · 35 KB · 22.09.2025</span>
+    </li>
+  </ul>
+</section>
+
+<footer>
+  <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
+</footer>
+
+<script src="script.js"></script>
+<!-- Supabase SDK -->
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://oygmrzxtkzguehhwjyib.supabase.co";
+  const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im95Z21yenh0a3pndWVoaHdqeWliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkwODg2NTIsImV4cCI6MjA3NDY2NDY1Mn0.Ot7mSNlytKkT5N-GfWq2PbT0U92uiV8pvQghhgU6yM0";
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+  // Контейнери от твоя HTML (писахме ги по-рано)
+  const containers = {
+    'правилници': document.getElementById('docs-pravilnici'),
+    'графици':     document.getElementById('docs-grafici'),
+    'образци':     document.getElementById('docs-obrazci'),
+    'стипендии':   document.getElementById('docs-stipendii'),
+  };
+
+  const humanExt  = ext => (ext||'').toUpperCase();
+  const humanSize = kb => !kb ? '' : (kb>=1048576 ? (kb/1048576).toFixed(1)+' GB' :
+                                      kb>=1024    ? (kb/1024).toFixed(1)+' MB' : kb+' KB');
+  const formatDate = iso => new Date(iso).toLocaleDateString('bg-BG');
+
+  async function loadDocs(){
+    const { data, error } = await supabaseClient
+      .from('documents')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) { console.error(error); return; }
+
+    // Изчисти списъците
+    Object.values(containers).forEach(ul => { if (ul) ul.innerHTML = ''; });
+
+    // Рендерирай
+    (data||[]).forEach(doc=>{
+      const ul = containers[doc.category];
+      if (!ul) return;
+      const li = document.createElement('li');
+      li.className = 'doc-item';
+      li.dataset.cat = doc.category;
+      li.dataset.ext = doc.ext;
+
+      li.innerHTML = `
+        <a class="doc-link" href="${doc.url}" target="_blank" rel="noopener">
+          <span class="doc-ico" data-ext="${humanExt(doc.ext)}"></span>
+          ${doc.title}
+        </a>
+        <span class="doc-meta">${humanExt(doc.ext)} · ${humanSize(doc.size_kb)} · ${formatDate(doc.created_at)}</span>
+      `;
+      ul.appendChild(li);
+    });
   }
+
+  loadDocs();
 </script>
 
 </body>

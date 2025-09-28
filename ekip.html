@@ -3,76 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Екип – СУ "Петко Р. Славейков"</title>
+  <title>СУ "Петко Р. Славейков" - Екип</title>
+
+  <meta name="description" content="Педагогически и административен екип на СУ 'П. Р. Славейков', гр. Кричим.">
+  <meta property="og:title" content='СУ "Петко Р. Славейков" – Екип'>
+  <meta property="og:description" content="Запознайте се с нашите учители и ръководство.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/hero-1.jpg">
+  <meta name="theme-color" content="#2d4ea1">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon.png">
-
-  <style>
-    .team-section {
-      padding: 40px 20px;
-      background: var(--background-color);
-    }
-
-    .team-section h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: var(--primary-color);
-    }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      justify-items: center;
-    }
-
-    .team-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-      max-width: 240px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    .team-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .team-card h4 {
-      margin: 5px 0;
-      color: var(--primary-color);
-    }
-
-    .team-card p {
-      font-size: 0.9em;
-      color: #555;
-    }
-  </style>
 </head>
 <body>
-  <header>
+<header>
   <div class="logo">
     <img src="logo.png" alt="Лого на училището" loading="lazy" decoding="async">
     <div>
       <h1>СУ "Петко Р. Славейков"</h1>
       <p>гр. Кричим</p>
     </div>
-
-    <!-- Бургер бутон с ARIA -->
-    <button class="burger"
-            aria-label="Отвори основното меню"
-            aria-controls="nav-links"
-            aria-expanded="false"
-            onclick="toggleMenu(this)">
+    <button class="burger" aria-label="Отвори основното меню" aria-controls="nav-links" aria-expanded="false" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
-
   <nav>
     <ul id="nav-links">
       <li><a href="index.html">Начало</a></li>
@@ -87,74 +43,158 @@
   </nav>
 </header>
 
-
-<section class="hero">
-    <h2>Екип</h2>
-  </section>
-
-  <section class="team-section">
-    <h2>Администрация</h2>
-    <div class="team-grid">
-      <div class="team-card">
-        <img src="images/female.png" alt="Директор">
-        <h4>Десислава Николова</h4>
-        <p>Директор</p>
-      </div>
-      <div class="team-card">
-        <img src="images/male.png" alt="Заместник-директор">
-        <h4>Ангел Петров</h4>
-        <p>Заместник-директор</p>
-      </div>
+<section>
+  <h2>Екип</h2>
+  <div class="card team-search-box">
+  <div class="team-filters">
+    <input id="team-search" class="input" type="search" placeholder="Търси по име или роля…">
+    <div class="filter-chips" role="tablist" aria-label="Филтри по етап">
+      <button class="chip active" data-stage="" aria-pressed="true">Всички</button>
+      <button class="chip" data-stage="rkovodstvo" aria-pressed="false">Ръководство</button>
+      <button class="chip" data-stage="nachalen" aria-pressed="false">Начален етап (I–IV)</button>
+      <button class="chip" data-stage="gimn" aria-pressed="false">Гимназиален етап (V–XII)</button>
+      <button class="chip" data-stage="psuvet" aria-pressed="false">Педагогически съвет</button>
     </div>
-  </section>
+  </div>
+</div>
 
-  <section class="team-section">
-    <h2>Начални учители</h2>
-    <div class="team-grid">
-      <div class="team-card">
-        <img src="images/female.png" alt="Учител">
-        <h4>Мария Иванова</h4>
-        <p>Начален учител</p>
+
+
+  <p>Запознайте се с нашия екип по етапи и роли.</p>
+
+  <!-- Ръководство -->
+  <h3 class="team-section-title">Ръководство</h3>
+  <div class="teacher-grid">
+    <article class="teacher-card" data-stage="rkovodstvo">
+      <div class="teacher-photo">
+        <img src="images/male.png" alt="Иван Иванов" loading="lazy">
       </div>
-      <div class="team-card">
-        <img src="images/male.png" alt="Учител">
-        <h4>Петър Георгиев</h4>
-        <p>Начален учител</p>
+      <div class="teacher-body">
+        <h3 class="teacher-name">Иван Иванов</h3>
+        <p class="teacher-role">Директор</p>
+        <div class="teacher-meta">
+          <a href="mailto:ivan.ivanov@example.bg">ivan.ivanov@example.bg</a>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <section class="team-section">
-    <h2>Учители в гимназиален етап</h2>
-    <div class="team-grid">
-      <div class="team-card">
-        <img src="images/female.png" alt="Учител">
-        <h4>Иванка Тодорова</h4>
-        <p>Български език и литература</p>
+    </article>
+    <article class="teacher-card" data-stage="rkovodstvo">
+      <div class="teacher-photo">
+        <img src="images/female.png" alt="Мария Георгиева" loading="lazy">
       </div>
-      <div class="team-card">
-        <img src="images/male.png" alt="Учител">
-        <h4>Георги Симеонов</h4>
-        <p>Математика</p>
+      <div class="teacher-body">
+        <h3 class="teacher-name">Мария Георгиева</h3>
+        <p class="teacher-role">Заместник-директор</p>
+        <div class="teacher-meta">
+          <a href="mailto:m.georgieva@example.bg">m.georgieva@example.bg</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </article>
+  </div>
 
-  <footer>
-    <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
-  </footer>
+  <!-- Начален етап -->
+  <h3 class="team-section-title">Начален етап (I–IV)</h3>
+  <div class="teacher-grid">
+    <article class="teacher-card" data-stage="nachalen">
+      <div class="teacher-photo">
+        <img src="images/female.png" alt="Мария Петрова" loading="lazy">
+      </div>
+      <div class="teacher-body">
+        <h3 class="teacher-name">Мария Петрова</h3>
+        <p class="teacher-role">Начален учител</p>
+        <div class="teacher-meta">
+          <a href="mailto:m.petrova@example.bg">m.petrova@example.bg</a>
+        </div>
+      </div>
+    </article>
+    <article class="teacher-card" data-stage="nachalen">
+      <div class="teacher-photo">
+        <img src="images/female.png" alt="Ирина Стефанова" loading="lazy">
+      </div>
+      <div class="teacher-body">
+        <h3 class="teacher-name">Ирина Стефанова</h3>
+        <p class="teacher-role">Начален учител</p>
+        <div class="teacher-meta">
+          <a href="mailto:i.stefanova@example.bg">i.stefanova@example.bg</a>
+        </div>
+      </div>
+    </article>
+  </div>
 
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById('nav-links');
-      nav.classList.toggle('active');
-    }
-  </script>
-  <script>
-  function toggleMenu() {
-    document.querySelector('nav ul').classList.toggle('active');
-  }
-</script>
+  <!-- Гимназиален етап -->
+  <h3 class="team-section-title">Гимназиален етап (V–XII)</h3>
+  <div class="teacher-grid">
+    <article class="teacher-card" data-stage="gimn">
+      <div class="teacher-photo">
+        <img src="images/male.png" alt="Георги Димитров" loading="lazy">
+      </div>
+      <div class="teacher-body">
+        <h3 class="teacher-name">Георги Димитров</h3>
+        <p class="teacher-role">Учител по математика</p>
+        <div class="teacher-meta">
+          <a href="mailto:g.dimitrov@example.bg">g.dimitrov@example.bg</a>
+        </div>
+      </div>
+    </article>
+    <article class="teacher-card" data-stage="gimn">
+      <div class="teacher-photo">
+        <img src="images/female.png" alt="Елена Стоянова" loading="lazy">
+      </div>
+      <div class="teacher-body">
+        <h3 class="teacher-name">Елена Стоянова</h3>
+        <p class="teacher-role">Учител по информатика и ИТ</p>
+        <div class="teacher-meta">
+          <a href="mailto:e.stoyanova@example.bg">e.stoyanova@example.bg</a>
+        </div>
+      </div>
+    </article>
+    <article class="teacher-card" data-stage="gimn">
+      <div class="teacher-photo">
+        <img src="images/female.png" alt="Надежда Колева" loading="lazy">
+      </div>
+      <div class="teacher-body">
+        <h3 class="teacher-name">Надежда Колева</h3>
+        <p class="teacher-role">Учител по английски език</p>
+        <div class="teacher-meta">
+          <a href="mailto:n.koleva@example.bg">n.koleva@example.bg</a>
+        </div>
+      </div>
+    </article>
+  </div>
 
+  <!-- Педагогически съвет -->
+  <h3 class="team-section-title">Педагогически съвет</h3>
+  <div class="teacher-grid">
+    <article class="teacher-card" data-stage="psuvet">
+      <div class="teacher-photo">
+        <img src="images/male.png" alt="Петър Колев" loading="lazy">
+      </div>
+      <div class="teacher-body">
+        <h3 class="teacher-name">Петър Колев</h3>
+        <p class="teacher-role">Системен администратор</p>
+        <div class="teacher-meta">
+          <a href="mailto:p.kolev@example.bg">p.kolev@example.bg</a>
+        </div>
+      </div>
+    </article>
+    <article class="teacher-card" data-stage="psuvet">
+      <div class="teacher-photo">
+        <img src="images/female.png" alt="Виолета Маринова" loading="lazy">
+      </div>
+      <div class="teacher-body">
+        <h3 class="teacher-name">Виолета Маринова</h3>
+        <p class="teacher-role">Психолог</p>
+        <div class="teacher-meta">
+          <a href="mailto:v.marinova@example.bg">v.marinova@example.bg</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
