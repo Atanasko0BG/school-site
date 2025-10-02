@@ -196,5 +196,96 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+(async function(){
+  // 1) От къде четем CSV
+  const CSV_URL = 'data/teachers.csv'; // смени ако е друг път/линк
+
+  // 2) Контейнери на секциите
+  const grids = {
+    rkovodstvo: document.querySelector('h3.team-section-title:nth-of-type(1) + .teacher-grid'),
+    nachalen:   document.querySelector('h3.team-section-title:nth-of-type(2) + .teacher-grid'),
+    gimn:       document.querySelector('h3.team-section-title:nth-of-type(3) + .teacher-grid'),
+    psuvet:     document.querySelector('h3.team-section-title:nth-of-type(4) + .teacher-grid'),
+  };
+
+  // 3) Плейсхолдър за снимка
+  const placeholder = 'images/team/placeholder.jpg';
+
+  // 4) Лек CSV парсер (без библиотеки)
+  function parseCSV(text){
+    const lines = text.trim().split(/\r?\n/);
+    const header = lines.shift().split(',').map(h => h.trim());
+    return lines.map(line=>{
+      // проста, но надеждна разбивка: разделител „,“ и уважава кавички
+      const cols = [];
+      let cur = '', inQ = false;
+      for (let i=0;i<line.length;i++){
+        const ch = line[i];
+        if (ch === '"' ) {
+          if (inQ && line[i+1] === '"') { cur+='"'; i++; }
+          else inQ = !inQ;
+        } else if (ch === ',' && !inQ){
+          cols.push(cur); cur='';
+        } else {
+          cur += ch;
+        }
+      }
+      cols.push(cur);
+      const obj = {};
+      header.forEach((h,idx)=> obj[h] = (cols[idx]||'').trim());
+      return obj;
+    });
+  }
+
+  // 5) Рендер на карта
+  function cardHTML(t){
+    const photo = t.photo || placeholder;
+    const subject = t.subject ? `<div class="teacher-subject">${t.subject}</div>` : '';
+    const email = t.email ? `<a href="mailto:${t.email}">${t.email}</a>` : '';
+    return `
+      <article class="teacher-card" data-stage="${t.stage}">
+        <div class="teacher-photo">
+          <img src="${photo}" alt="${t.name}" loading="lazy">
+        </div>
+        <div class="teacher-body">
+          <h3 class="teacher-name">${t.name}</h3>
+          <p class="teacher-role">${t.role||''}</p>
+          ${subject}
+          <div class="teacher-meta">${email}</div>
+        </div>
+      </article>
+    `;
+  }
+
+  try{
+    const res = await fetch(CSV_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error('Не може да се зареди CSV: ' + res.status);
+    const text = await res.text();
+    const rows = parseCSV(text);
+
+    // Сортираме по stage и order (ако има)
+    rows.sort((a,b)=>{
+      const s = (a.stage||'').localeCompare(b.stage||'');
+      if (s!==0) return s;
+      const oa = parseInt(a.order||'999',10), ob = parseInt(b.order||'999',10);
+      return oa - ob;
+    });
+
+    // Чистим текущото съдържание (по желание)
+    Object.values(grids).forEach(g=> g && (g.innerHTML = ''));
+
+    // Пълним секциите
+    rows.forEach(t=>{
+      const g = grids[t.stage];
+      if (!g) return;
+      g.insertAdjacentHTML('beforeend', cardHTML(t));
+    });
+  } catch(err){
+    console.error(err);
+  }
+})();
+</script>
+
 </body>
 </html>

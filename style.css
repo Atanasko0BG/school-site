@@ -84,12 +84,16 @@ nav a:hover::after {
   width: 100%;
 }
 
-.hero {
+.home-hero{
   padding: 100px 20px;
   text-align: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.63)), url("images/hero-1.jpg") center/cover no-repeat;
-  color: white;
+  background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url("hero-2.jpg") center/cover no-repeat;
+  color:#fff;
 }
+.home-hero__content{ max-width:900px; margin:0 auto; }
+.hero-actions{ display:flex; justify-content:center; gap:14px; margin-top:16px; }
+.btn--ghost{ background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,.85); }
+.btn--ghost:hover{ background:rgba(255,255,255,.12); }
 
 .hero h2 {
   font-size: 2.8em;
@@ -243,7 +247,6 @@ footer {
   }
 }
 
-
 .calendar-section {
   padding: 60px 20px;
   background-color: var(--background-color);
@@ -306,7 +309,6 @@ footer {
     padding: 5px 10px !important;
   }
 }
-
 
 /* Странично меню */
 .side-menu {
@@ -560,8 +562,6 @@ nav a.active::after {
   .toast { justify-self: center; width: 100%; }
 }
 
-
-
 /* ===== ЕКИП – контроли и карти ===== */
 .team-controls .controls-row {
   display: grid;
@@ -642,19 +642,8 @@ nav a.active::after {
 @media (max-width: 520px) {
   .teacher-card { grid-column: span 12; } /* 1 в ред */
 }
-.team-section-title {
-  margin-top: 40px;
-  margin-bottom: 18px;
-  font-size: 1.6rem;
-  color: var(--primary-color);
-  border-left: 5px solid var(--accent-color);
-  padding-left: 10px;
-}
+
 /* ===== Екип: търсачка ===== */
-.team-search-box {
-  max-width: 500px;
-  margin: 0 auto 20px;
-}
 
 .team-search-box .input {
   width: 100%;
@@ -681,10 +670,6 @@ nav a.active::after {
   padding-left: 10px;
 }
 /* ===== Екип: търсачка + филтри ===== */
-.team-search-box {
-  max-width: 900px;
-  margin: 0 auto 25px;
-}
 
 .team-filters {
   display: flex;
@@ -1007,4 +992,128 @@ nav a.active::after {
 @media (max-width: 640px) {
   .doc-item { flex-direction: column; align-items: flex-start; }
   .doc-meta { white-space: normal; }
+}
+/* ===== Прием: HERO ===== */
+.admissions-hero {
+  background: radial-gradient(1200px 500px at 10% -20%, rgba(45,78,161,.15), transparent),
+              radial-gradient(900px 400px at 100% 0%, rgba(0,188,212,.15), transparent);
+  padding: 28px 0 6px;
+}
+.admissions-hero .hero-inner {
+  max-width: 1100px; margin: 0 auto; text-align: center;
+}
+.admissions-hero h2 { margin-bottom: 8px; }
+.hero-cta { display: flex; gap: 10px; justify-content: center; margin-top: 10px; }
+.btn.btn--ghost { background:#fff; color: var(--primary-color); border:1px solid #e5eaf2; }
+
+/* ===== Прием: layout ===== */
+.admissions-grid {
+  max-width: 1100px; margin: 20px auto; display: grid; gap: 20px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 980px){
+  .admissions-grid { grid-template-columns: 2fr 1fr; align-items: start; }
+}
+.admissions-main > h3 { scroll-margin-top: 90px; }
+
+/* sticky sidebar */
+.sticky { position: sticky; top: 90px; }
+
+/* ===== Стъпки (stepper) ===== */
+.stepper { counter-reset: step; list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 12px; }
+.stepper li {
+  background: #fff; border-radius: 14px; padding: 14px; box-shadow: 0 8px 20px rgba(0,0,0,.05);
+  position: relative; padding-left: 56px;
+}
+.stepper li::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; left: 14px; top: 14px;
+  width: 30px; height: 30px; border-radius: 999px; display: grid; place-items: center;
+  background: var(--accent-color); color:#fff; font-weight: 700;
+}
+
+/* ===== Важни дати (timeline) ===== */
+.timeline { list-style: none; padding: 0; margin: 0 0 18px; }
+.timeline li { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background:#fff; box-shadow: 0 8px 20px rgba(0,0,0,.05); }
+.timeline .tdate { font-weight: 800; color: var(--primary-color); }
+
+/* ===== Специалности ===== */
+.cards-grid--admissions { grid-template-columns: repeat(12,1fr); gap: 16px; }
+.cards-grid--admissions .card { grid-column: span 12; }
+@media (min-width: 820px){ .cards-grid--admissions .card { grid-column: span 4; } }
+.card--track { position: relative; }
+.track-badge {
+  position: absolute; top: 12px; right: 12px; background: #e8f7fa; color:#0277bd; font-weight:700;
+  padding: 4px 10px; border-radius: 999px; font-size: .8rem; border:1px solid #cfefff;
+}
+.track-list { margin: 10px 0 0 0; padding-left: 18px; }
+
+/* ===== FAQ (акордеон) ===== */
+.faq { display: grid; gap: 8px; }
+.faq-q {
+  width: 100%; text-align: left; background:#fff; border:1px solid #e5eaf2; border-radius: 12px;
+  padding: 12px 14px; font-weight: 700; cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.05s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.faq-q[aria-expanded="true"] { background: #f3f7ff; border-color: var(--accent-color); box-shadow: 0 10px 24px rgba(0,188,212,.12); }
+.faq-a {
+  overflow: hidden; max-height: 0; transition: max-height .25s ease; background:#fff; border:1px solid #e5eaf2; border-radius: 12px;
+  padding: 0 14px; color:#455a64;
+}
+.faq-q[aria-expanded="true"] + .faq-a { padding: 12px 14px; }
+
+/* Ползва стила на .doc-list, .doc-item от „Документи“ */
+/* ===== Прием: Изпит / оценяване ===== */
+.exam-table-wrap { overflow-x: auto; }
+.exam-table { width: 100%; border-collapse: collapse; }
+.exam-table th, .exam-table td { padding: 10px 12px; border-bottom: 1px solid #eef2f7; text-align: left; }
+.exam-table thead th { background: #f7f9fe; color: #1e3a8a; font-weight: 700; }
+.exam-table tbody tr:hover { background: #fafcff; }
+
+.checklist { padding-left: 18px; margin: 10px 0 0; }
+.checklist li { margin: 6px 0; }
+
+.exam-form .form-row { display: grid; gap: 12px; grid-template-columns: 1fr; }
+.exam-form .form-field label { display:block; margin-bottom:6px; font-weight:600; color:#39557a; }
+.exam-form .input { width:100%; padding:12px 14px; border:1px solid #e0e0e0; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,.05); }
+.exam-form .input:focus { outline:none; border-color: var(--accent-color); box-shadow:0 6px 16px rgba(0,188,212,.15); }
+.exam-form .consent { display:block; margin: 10px 0; color:#455a64; }
+.exam-form .form-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+
+@media (min-width: 820px){
+  .exam-form .form-row { grid-template-columns: 1fr 1fr; }
+}
+/* ===== Home: HERO ===== */
+.home-hero {
+  padding: 28px 0 8px;
+  background:
+    radial-gradient(1200px 520px at 5% -20%, rgba(45,78,161,.16), transparent),
+    radial-gradient(1000px 480px at 95% 0%, rgba(0,188,212,.18), transparent);
+}
+.home-hero__content { max-width: 1100px; margin: 0 auto; text-align: center; }
+.home-hero h2 { margin-bottom: 6px; }
+.hero-actions { display:flex; gap:10px; justify-content:center; margin-top:10px; }
+.btn.btn--ghost { background:#fff; color:var(--primary-color); border:1px solid #e5eaf2; }
+
+/* ===== Home: Quick links ===== */
+.quick-links {
+  max-width: 1100px; margin: 16px auto; display: grid; gap: 12px;
+  grid-template-columns: repeat(2,1fr);
+}
+@media (min-width: 880px) { .quick-links { grid-template-columns: repeat(4,1fr); } }
+.q-card {
+  display:flex; gap:12px; align-items:center; background:#fff; border-radius:14px; padding:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,.06); text-decoration:none; color:inherit; transition: transform .05s ease, box-shadow .2s ease;
+}
+.q-card:hover { transform: translateY(-2px); box-shadow:0 14px 28px rgba(0,0,0,.08); }
+.q-ico { font-size: 28px; }
+
+/* ===== Home: Gallery strip ===== */
+.gallery-strip { display:flex; gap:8px; overflow:auto; padding:8px; }
+.gallery-strip img {
+  height:120px; border-radius:12px; flex:0 0 auto; object-fit:cover;
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
+}
+section:empty {
+  display: none;
 }

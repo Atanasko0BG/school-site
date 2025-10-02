@@ -1,35 +1,29 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>СУ "Петко Р. Славейков" - Начало</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>СУ "Петко Р. Славейков" – Кричим</title>
+  <meta name="description" content="Официален сайт на СУ 'Петко Р. Славейков', гр. Кричим – прием, документи, събития."/>
+  <meta name="theme-color" content="#2d4ea1">
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
-  <header>
+<header>
   <div class="logo">
     <img src="logo.png" alt="Лого на училището" loading="lazy" decoding="async">
     <div>
       <h1>СУ "Петко Р. Славейков"</h1>
       <p>гр. Кричим</p>
     </div>
-
-    <!-- Бургер бутон с ARIA -->
-    <button class="burger"
-            aria-label="Отвори основното меню"
-            aria-controls="nav-links"
-            aria-expanded="false"
-            onclick="toggleMenu(this)">
+    <button class="burger" aria-label="Меню" aria-controls="nav-links" aria-expanded="false" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
-
   <nav>
     <ul id="nav-links">
-      <li><a href="index.html">Начало</a></li>
+      <li><a class="active" href="index.html">Начало</a></li>
       <li><a href="priem.html">Прием</a></li>
       <li><a href="dokumenti.html">Документи</a></li>
       <li><a href="novini.html">Новини</a></li>
@@ -41,50 +35,83 @@
   </nav>
 </header>
 
-
-
-
-  <section class="hero">
-    <h2>Добре дошли в СУ "Петко Р. Славейков"</h2>
-    <p>Съвременно училище за знание, развитие и вдъхновение в гр. Кричим.</p>
-  </section>
-
-  <section>
-    <div class="card">
-      <h2>За нас</h2>
-      <p>СУ "Петко Р. Славейков" е училище с традиции, отворено към новото и с мисия да развива потенциала на своите ученици чрез модерно образование и подкрепяща среда.</p>
+<main>
+  <!-- HERO -->
+  <section class="home-hero">
+    <div class="home-hero__content card">
+      <h2>Добре дошли в СУ „Петко Р. Славейков“</h2>
+      <p>Прием, документи и събития – на едно място.</p>
+      <div class="hero-actions">
+        <a class="btn" href="priem.html">Прием 2025/26</a>
+        <a class="btn btn--ghost" href="dokumenti.html">Документи</a>
+      </div>
     </div>
   </section>
 
-  <section class="cta-buttons">
-    <a href="priem.html" class="btn">📄 Прием</a>
-    <a href="novini.html" class="btn">📰 Новини</a>
-    <a href="kontakt.html" class="btn">📞 Контакти</a>
+  <!-- БЪРЗИ ВРЪЗКИ -->
+  <section class="quick-links">
+    <a class="q-card" href="priem.html">
+      <div class="q-ico">📘</div>
+      <div>
+        <h3>Прием</h3>
+        <p>Условия и информация.</p>
+      </div>
+    </a>
+    <a class="q-card" href="dokumenti.html">
+      <div class="q-ico">📄</div>
+      <div>
+        <h3>Документи</h3>
+        <p>Правилници, образци, графици.</p>
+      </div>
+    </a>
+    <a class="q-card" href="subitiya.html">
+      <div class="q-ico">📅</div>
+      <div>
+        <h3>Събития</h3>
+        <p>Календар на училището.</p>
+      </div>
+    </a>
+    <a class="q-card" href="ekip.html">
+      <div class="q-ico">👩‍🏫</div>
+      <div>
+        <h3>Екип</h3>
+        <p>Ръководство и преподаватели.</p>
+      </div>
+    </a>
+    <a class="q-card" href="galeriya.html">
+      <div class="q-ico">🖼️</div>
+      <div>
+        <h3>Галерия</h3>
+        <p>Моменти от училищния живот.</p>
+      </div>
+    </a>
+    <a class="q-card" href="novini.html">
+      <div class="q-ico">📰</div>
+      <div>
+        <h3>Новини</h3>
+        <p>Последни съобщения и успехи.</p>
+      </div>
+    </a>
   </section>
 
-  <footer>
-    <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
-  </footer>
+  <!-- КАРТА -->
+  <section>
+    <h3 class="team-section-title">Къде сме</h3>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <iframe
+        title="Карта: СУ 'Петко Р. Славейков', Кричим"
+        src="https://www.google.com/maps?q=42.047549,24.469337&z=17&output=embed"
+        width="100%" height="360" style="border:0;" allowfullscreen loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+</main>
 
-  <script>
-  function toggleMenu() {
-    const nav = document.querySelector('nav ul');
-    nav.classList.toggle('active');
-  }
-</script>
+<footer>
+  <p>&copy; 2025 СУ "Петко Р. Славейков", гр. Кричим. Всички права запазени.</p>
+</footer>
 
-  </script>
-  <script>
-  function toggleMenu() {
-    const nav = document.querySelector('nav ul');
-    nav.classList.toggle('active');
-  }
-</script>
-<script>
-  function toggleMenu() {
-    document.querySelector('nav ul').classList.toggle('active');
-  }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
+<!-- ЛЕНТА ГАЛЕРИЯ -->

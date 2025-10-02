@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
+  <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Админ – Качване на документи</title>
@@ -38,38 +39,47 @@
     </div>
 
     <!-- Uploader -->
-    <div id="uploader" class="admin-box hidden">
-      <h3>Качване на документ</h3>
-      <div class="row">
-        <input id="title" class="input full" type="text" placeholder="Заглавие на документа" required>
-        <select id="category" class="input">
-          <option value="правилници">Правилници</option>
-          <option value="графици">Графици</option>
-          <option value="образци">Образци</option>
-          <option value="стипендии">Стипендии</option>
-        </select>
-        <input id="file" class="input full" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx" required>
-      </div>
-      <div style="margin-top:12px;">
-        <button class="btn" id="btn-upload">Качи</button>
-        <span id="status" class="muted"></span>
-      </div>
+<div id="uploader" class="admin-box hidden">
+  <h3>Качване на документ</h3>
 
-      <h4 style="margin-top:18px;">Последно качени</h4>
-      <ul id="recent" class="list"></ul>
-    </div>
+  <div class="row">
+    <input id="title" class="input full" type="text" placeholder="Заглавие на документа" required>
+
+    <!-- СЕЛЕКТ С ОПЦИИ (вече вградено, няма как да е празно) -->
+    <select id="category" class="input" required>
+      <option value="" disabled selected>Избери категория…</option>
+      <option value="правилници">Правилници</option>
+      <option value="графици">Графици</option>
+      <option value="образци">Образци</option>
+      <option value="стипендии">Стипендии</option>
+      <option value="прием">Прием</option>
+    </select>
+
+    <input id="file" class="input full" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx" required>
+  </div>
+
+  <div style="margin-top:12px;">
+    <button class="btn" id="btn-upload">Качи</button>
+    <span id="status" class="muted"></span>
+  </div>
+
+  <h4 style="margin-top:18px;">Последно качени</h4>
+  <ul id="recent" class="list"></ul>
+</div>
+
   </section>
 
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script>
-  // Замени тези редове със своите данни
+  // >>> ПОПЪЛНИ СВОИТЕ!!!
   const SUPABASE_URL = "https://oygmrzxtkzguehhwjyib.supabase.co";
   const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im95Z21yenh0a3pndWVoaHdqeWliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkwODg2NTIsImV4cCI6MjA3NDY2NDY1Mn0.Ot7mSNlytKkT5N-GfWq2PbT0U92uiV8pvQghhgU6yM0";
-
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
   const $ = (id)=>document.getElementById(id);
   const loginBox = $('login'), uploader = $('uploader');
 
+  // Вход
   $('btn-login').addEventListener('click', async ()=>{
     const email = $('email').value.trim();
     const password = $('password').value;
@@ -82,45 +92,73 @@
     loadRecent();
   });
 
+  // Качване
   $('btn-upload').addEventListener('click', async ()=>{
     const file = $('file').files[0];
     const title = $('title').value.trim();
     const category = $('category').value;
-    if (!file || !title) { alert('Попълни заглавие и избери файл.'); return; }
+
+    if (!file || !title || !category) { alert('Попълни заглавие, категория и файл.'); return; }
+
+    $('status').textContent = 'Качване…';
 
     const now = new Date();
     const folder = `${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,'0')}`;
-    const path = `${folder}/${Date.now()}-${file.name}`;
+    const safeName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`;
+    const path = `${folder}/${safeName}`;
 
-    const { error: upErr } = await supabase.storage.from('docs').upload(path, file);
-    if (upErr) { $('status').textContent = 'Грешка: ' + upErr.message; return; }
+    const { error: upErr } = await supabase.storage.from('docs').upload(path, file, { upsert:false });
+    if (upErr) { $('status').textContent = 'Грешка при качване: ' + upErr.message; return; }
 
-    const { data: urlData } = supabase.storage.from('docs').getPublicUrl(path);
-    const url = urlData.publicUrl;
+    const { data: pub } = supabase.storage.from('docs').getPublicUrl(path);
+    const url = pub.publicUrl;
 
-    const sizeKb = Math.round(file.size / 1024);
-    const ext = file.name.split('.').pop();
+    const ext = (file.name.split('.').pop() || '').toLowerCase();
+    const size_kb = Math.round(file.size / 1024);
 
-    const { error: insErr } = await supabase.from('documents').insert({
-      title, category, url, path, ext, size_kb: sizeKb
-    });
+    const { error: insErr } = await supabase.from('documents').insert({ title, category, url, path, ext, size_kb });
     if (insErr) { $('status').textContent = 'Грешка при запис: ' + insErr.message; return; }
 
     $('status').textContent = 'Готово!';
-    $('title').value = ''; $('file').value = '';
+    $('title').value = ''; $('file').value = ''; $('category').selectedIndex = 0;
     loadRecent();
   });
 
+  // Списък + изтриване
   async function loadRecent(){
-    const { data } = await supabase.from('documents').select('*').order('created_at', { ascending: false }).limit(5);
+    const { data, error } = await supabase.from('documents').select('*').order('created_at',{ascending:false}).limit(10);
     const ul = $('recent'); ul.innerHTML = '';
     (data||[]).forEach(d=>{
+      const size = d.size_kb ? Math.round(d.size_kb)+' KB' : '';
       const li = document.createElement('li');
-      li.innerHTML = `<span>${d.title} (${d.category})</span>
-                      <a class="btn" href="${d.url}" target="_blank">Преглед</a>`;
+      li.innerHTML = `
+        <span>${d.title} <span class="muted">(${d.category.toUpperCase()}, ${ (d.ext||'').toUpperCase() }, ${size})</span></span>
+        <span style="display:flex;gap:8px;">
+          <a class="btn" href="${d.url}" target="_blank" rel="noopener">Преглед</a>
+          <button class="btn" data-del="${d.id}" data-path="${d.path}">Изтрий</button>
+        </span>`;
       ul.appendChild(li);
     });
+    ul.querySelectorAll('[data-del]').forEach(btn=>{
+      btn.addEventListener('click', ()=> handleDelete(btn.dataset.del, btn.dataset.path));
+    });
   }
+
+  async function handleDelete(id, path){
+    if (!confirm('Да изтрия ли този документ?')) return;
+    const { error: delFileErr } = await supabase.storage.from('docs').remove([path]);
+    if (delFileErr) { alert('Грешка при триене на файл: ' + delFileErr.message); return; }
+    const { error: delRowErr } = await supabase.from('documents').delete().eq('id', id);
+    if (delRowErr) { alert('Грешка при триене на записа: ' + delRowErr.message); return; }
+    loadRecent();
+  }
+
+  // Пази uploader-а заключен, ако няма сесия
+  supabase.auth.getSession().then(({ data })=>{
+    if (data.session) { loginBox.classList.add('hidden'); uploader.classList.remove('hidden'); loadRecent(); }
+    else { uploader.classList.add('hidden'); loginBox.classList.remove('hidden'); }
+  });
 </script>
+
 </body>
 </html>

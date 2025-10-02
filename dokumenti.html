@@ -57,6 +57,7 @@
         <button class="chip" data-cat="графици" aria-pressed="false">Графици</button>
         <button class="chip" data-cat="образци" aria-pressed="false">Образци</button>
         <button class="chip" data-cat="стипендии" aria-pressed="false">Стипендии</button>
+        <button class="chip" data-cat="прием" aria-pressed="false">Прием</button>
       </div>
     </div>
   </div>
@@ -139,6 +140,8 @@
       <span class="doc-meta">DOCX · 35 KB · 22.09.2025</span>
     </li>
   </ul>
+  <h3 class="team-section-title">Прием</h3>
+<ul class="doc-list" id="docs-priem-cat"></ul>
 </section>
 
 <footer>
@@ -159,6 +162,8 @@
     'графици':     document.getElementById('docs-grafici'),
     'образци':     document.getElementById('docs-obrazci'),
     'стипендии':   document.getElementById('docs-stipendii'),
+    'прием':       document.getElementById('docs-priem-cat'),
+
   };
 
   const humanExt  = ext => (ext||'').toUpperCase();
@@ -202,3 +207,4 @@
 
 </body>
 </html>
+
